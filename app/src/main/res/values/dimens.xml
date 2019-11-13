@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="default_size">16dp</dimen>
+    <dimen name="half_size">8dp</dimen>
+</resources>
