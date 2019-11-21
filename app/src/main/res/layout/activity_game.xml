@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/dark_primary_color"
     tools:context=".GameActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,14 +22,18 @@
             android:id="@+id/level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
             android:fontFamily="@font/raleway_bold"
             android:text="level"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@+id/level_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+
+            />
 
         <TextView
             android:id="@+id/level_number"
@@ -36,8 +41,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_extrabold"
             android:text="3"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/level" />
@@ -58,6 +65,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_bold"
             android:text="lifes"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -73,6 +81,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_bold"
             android:text="3"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -84,8 +93,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/home_button"
         style="@style/homeRefreshButton"
-        android:layout_marginEnd="0dp"
+        android:backgroundTint="@color/button_color_1"
         android:layout_marginBottom="32dp"
+        app:backgroundTint="@color/accent_color"
         app:layout_constraintBottom_toTopOf="@+id/grid_layout"
         app:layout_constraintEnd_toEndOf="@+id/grid_layout">
     </com.google.android.material.button.MaterialButton>
@@ -93,6 +103,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/refresh_button"
         style="@style/homeRefreshButton"
+        android:backgroundTint="@color/button_color_1"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/grid_layout"
@@ -105,6 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:background="@drawable/shape_grid"
+        android:backgroundTint="@color/dark_secondary_color"
         android:columnCount="3"
         android:padding="@dimen/half_size"
         android:rowCount="4"
@@ -115,6 +127,8 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton1"
+            android:text="5"
+            android:backgroundTint="@color/dark_button_color"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
@@ -127,12 +141,14 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton3"
+            android:backgroundTint="@color/accent_color"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton4"
             style="@style/gridButton"
+            android:backgroundTint="@color/button_color_1"
             android:layout_marginTop="@dimen/half_size">
         </com.google.android.material.button.MaterialButton>
 
@@ -159,6 +175,8 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton8"
             style="@style/gridButton"
+            android:text="2"
+            android:backgroundTint="@color/dark_button_color"
             android:layout_marginStart="@dimen/half_size"
             android:layout_marginTop="@dimen/half_size"
             android:layout_marginEnd="@dimen/half_size">
