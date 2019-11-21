@@ -30,7 +30,7 @@
         android:id="@+id/next_level_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/raleway_bold"
         android:gravity="center"
         android:text="Next level is:"
@@ -47,7 +47,7 @@
         android:id="@+id/lavel_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/raleway_extrabold"
         android:gravity="center"
         android:text="5"
@@ -66,11 +66,30 @@
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/accent_color"
         android:text="READY"
+        app:icon="@drawable/ic_ready"
+        app:iconGravity="start"
+        app:iconPadding="-38dp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lavel_number">
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/get_life"
+        style="@style/menuButton"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/accent_color"
+        android:text="GET A LIFE"
+        app:icon="@drawable/ic_plus"
+        app:iconGravity="start"
+        app:iconPadding="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ready_button">
     </com.google.android.material.button.MaterialButton>
 
 

@@ -31,9 +31,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-
-            />
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/level_number"
@@ -61,6 +59,7 @@
 
         <ImageView
             android:id="@+id/life_text"
+            android:layout_marginEnd="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/cards_heart"
@@ -69,7 +68,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/life_number_text"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,8 +94,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/accent_color"
-        app:backgroundTint="@color/accent_color"
-        app:icon="@drawable/ic_icons8_home_6"
+        app:icon="@drawable/ic_home"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         app:layout_constraintBottom_toTopOf="@+id/grid_layout"
@@ -110,7 +108,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/accent_color"
-        app:icon="@drawable/ic_icons8_synchronize"
+        app:icon="@drawable/ic_refresh"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         app:layout_constraintBottom_toTopOf="@+id/grid_layout"
