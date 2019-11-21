@@ -4,4 +4,17 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="dark_primary_color">#323C46</color>
+    <color name="dark_secondary_color">#45535F</color>
+
+    <color name="dark_button_color">#637484</color>
+
+    <color name="accent_color">#47BFEF</color>
+
+
+    <color name="button_color_1">#47BFEF</color>
+    <color name="button_color_2">#FAB18B</color>
+
+
 </resources>
