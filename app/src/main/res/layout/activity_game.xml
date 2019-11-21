@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/dark_primary_color"
+    android:orientation="vertical"
     tools:context=".GameActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,15 +59,13 @@
         app:layout_constraintBottom_toTopOf="@+id/home_button"
         app:layout_constraintEnd_toEndOf="@+id/grid_layout">
 
-        <TextView
+        <ImageView
             android:id="@+id/life_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/raleway_bold"
-            android:text="lifes"
+            android:background="@drawable/cards_heart"
+            android:backgroundTint="@color/white"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/life_number_text"
             app:layout_constraintHorizontal_bias="0.5"
@@ -83,19 +81,24 @@
             android:text="3"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="36sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/life_text"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/home_button"
         style="@style/homeRefreshButton"
-        android:backgroundTint="@color/accent_color"
+        android:layout_gravity="center"
         android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/accent_color"
         app:backgroundTint="@color/accent_color"
+        app:icon="@drawable/ic_icons8_home_6"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
         app:layout_constraintBottom_toTopOf="@+id/grid_layout"
         app:layout_constraintEnd_toEndOf="@+id/grid_layout">
     </com.google.android.material.button.MaterialButton>
@@ -103,9 +106,13 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/refresh_button"
         style="@style/homeRefreshButton"
-        android:backgroundTint="@color/accent_color"
+        android:layout_gravity="center"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/accent_color"
+        app:icon="@drawable/ic_icons8_synchronize"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
         app:layout_constraintBottom_toTopOf="@+id/grid_layout"
         app:layout_constraintEnd_toStartOf="@+id/home_button">
     </com.google.android.material.button.MaterialButton>
@@ -127,9 +134,9 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton1"
-            android:text="5"
+            style="@style/gridButton"
             android:backgroundTint="@color/dark_button_color"
-            style="@style/gridButton">
+            android:text="5">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
@@ -141,15 +148,15 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton3"
-            android:backgroundTint="@color/accent_color"
-            style="@style/gridButton">
+            style="@style/gridButton"
+            android:backgroundTint="@color/accent_color">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton4"
             style="@style/gridButton"
-            android:backgroundTint="@color/accent_color"
-            android:layout_marginTop="@dimen/half_size">
+            android:layout_marginTop="@dimen/half_size"
+            android:backgroundTint="@color/accent_color">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
@@ -175,11 +182,11 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton8"
             style="@style/gridButton"
-            android:text="2"
-            android:backgroundTint="@color/dark_button_color"
             android:layout_marginStart="@dimen/half_size"
             android:layout_marginTop="@dimen/half_size"
-            android:layout_marginEnd="@dimen/half_size">
+            android:layout_marginEnd="@dimen/half_size"
+            android:backgroundTint="@color/dark_button_color"
+            android:text="2">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
