@@ -10,13 +10,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/level_card"
-        android:layout_width="166dp"
-        android:layout_height="177dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="152dp"
+        android:layout_height="152dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/shape_level"
         app:layout_constraintBottom_toTopOf="@+id/grid_layout"
-        app:layout_constraintEnd_toStartOf="@+id/refresh_button">
+        app:layout_constraintStart_toStartOf="@+id/grid_layout">
 
         <TextView
             android:id="@+id/level"
@@ -50,8 +49,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/life_card"
-        android:layout_width="128dp"
-        android:layout_height="96dp"
+        android:layout_width="104dp"
+        android:layout_height="80dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/shape_level"
         app:layout_constraintBottom_toTopOf="@+id/home_button"
@@ -105,14 +104,14 @@
         android:id="@+id/refresh_button"
         style="@style/homeRefreshButton"
         android:layout_gravity="center"
-        android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/accent_color"
         app:icon="@drawable/ic_refresh"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         app:layout_constraintBottom_toTopOf="@+id/grid_layout"
-        app:layout_constraintEnd_toStartOf="@+id/home_button">
+        app:layout_constraintStart_toStartOf="@+id/life_card">
+
     </com.google.android.material.button.MaterialButton>
 
     <GridLayout
