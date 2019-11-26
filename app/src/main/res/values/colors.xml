@@ -3,7 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
     <color name="white">#FFFFFFFF</color>
+    <color name="green">#51D96D</color>
+    <color name="red">#FD3935</color>
 
     <color name="dark_primary_color">#323C46</color>
     <color name="dark_secondary_color">#45535F</color>
