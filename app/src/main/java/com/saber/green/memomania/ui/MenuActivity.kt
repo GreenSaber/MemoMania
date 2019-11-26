@@ -1,9 +1,9 @@
-package com.saber.green.memomania
+package com.saber.green.memomania.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import com.saber.green.memomania.R
 import kotlinx.android.synthetic.main.activity_menu.*
 
 class MenuActivity : AppCompatActivity() {

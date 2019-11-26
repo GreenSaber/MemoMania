@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/dark_primary_color"
     android:orientation="vertical"
-    tools:context=".GameActivity">
+    tools:context=".ui.GameActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/level_card"

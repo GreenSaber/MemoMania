@@ -1,7 +1,8 @@
-package com.saber.green.memomania
+package com.saber.green.memomania.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.saber.green.memomania.R
 
 class LevelActivity : AppCompatActivity() {
 
