@@ -27,6 +27,7 @@
         <item name="cornerRadius">8dp</item>
         <item name="android:textSize">48sp</item>
         <item name="backgroundTint">@color/dark_primary_color</item>
+        <item name="android:layout_margin">4dp</item>
     </style>
 
     <style name="homeRefreshButton">
