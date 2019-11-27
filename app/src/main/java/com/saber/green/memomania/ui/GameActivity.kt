@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
@@ -69,17 +68,16 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun onActiveButtonClick() {
-        activeButtons.forEach { button ->
-            button.setOnClickListener(tileClickListener)
+        activeButtons.forEach { it ->
+            it.setOnClickListener{
+                val button: MaterialButton = findViewById(it.id)
+                button.text = getButtonValue(button)
+                AnimationUtils.scaleAnimation(button, 1.07f, 200)
+                button.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_button_color))
+            }
         }
     }
 
-    val tileClickListener = View.OnClickListener {
-        if (activeButtons.contains(it)){
-            AnimationUtils.scaleAnimation(it, 1.07f, 200)
-            it.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_button_color))
-        }
-    }
 
     private fun getButtonValue(materialButton: MaterialButton) : String {
         val buttonNumber = materialButton.resources.getResourceName(materialButton.id).replace("${packageName}:id/materialButton", "").toInt()
