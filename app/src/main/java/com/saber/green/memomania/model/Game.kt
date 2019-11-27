@@ -20,7 +20,7 @@ class Game(private val levelNumber: Int) {
         return tilesList
     }
 
-    fun getTiles(): ArrayList<Tile>? {
+    fun getActiveTiles(): ArrayList<Tile>? {
         val result = when (levelNumber) {
             1 -> getUniqueTilesArray(3, 9)
             2 -> getUniqueTilesArray(4, 9)
