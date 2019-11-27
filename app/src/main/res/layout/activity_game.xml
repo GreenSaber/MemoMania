@@ -131,9 +131,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton1"
-            style="@style/gridButton"
-            android:backgroundTint="@color/dark_button_color"
-            android:text="5">
+            style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
@@ -143,14 +141,12 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton3"
-            style="@style/gridButton"
-            android:backgroundTint="@color/accent_color">
+            style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton4"
-            style="@style/gridButton"
-            android:backgroundTint="@color/accent_color">
+            style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
@@ -170,9 +166,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton8"
-            style="@style/gridButton"
-            android:backgroundTint="@color/dark_button_color"
-            android:text="2">
+            style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
