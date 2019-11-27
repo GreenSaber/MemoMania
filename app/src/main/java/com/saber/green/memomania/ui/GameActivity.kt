@@ -40,6 +40,7 @@ class GameActivity : AppCompatActivity() {
             activeButtons.add(findViewById(resources.getIdentifier("materialButton${it.getNumber()}", "id", packageName)))
         }
         activeButtons.forEach { it.setBackgroundColor(ContextCompat.getColor(this, R.color.accent_color)) }
+        activeButtons.forEach { it.isEnabled = false }
     }
 
     fun showActiveButtons(context: Context){
@@ -49,6 +50,7 @@ class GameActivity : AppCompatActivity() {
                 runOnUiThread {
                     activeButtons.forEach { it.setBackgroundColor(ContextCompat.getColor(context, R.color.dark_button_color)) }
                     activeButtons.forEach { it.text = getButtonValue(it) }
+                    activeButtons.forEach { it.isEnabled = false }
                 }
             }
         }, 2000)
@@ -61,7 +63,7 @@ class GameActivity : AppCompatActivity() {
                 runOnUiThread {
                     activeButtons.forEach { it.setBackgroundColor(ContextCompat.getColor(context, R.color.accent_color)) }
                     activeButtons.forEach { it.text = "" }
-                    activeButtons.forEach { it.isClickable = true }
+                    activeButtons.forEach { it.isEnabled = true }
                 }
             }
         }, 5500)
