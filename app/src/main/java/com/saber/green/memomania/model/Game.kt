@@ -12,8 +12,8 @@ class Game(private val levelNumber: Int) {
     }
 
     private fun getUniqueTilesArray(arraySize: Int, valuesMaxCount: Int, numbersMaxCount: Int = 12): ArrayList<Tile> {
-        val numbers = randomUtils.getUniqueRandomElementsArray(arraySize, numbersMaxCount)
-        val values = randomUtils.getUniqueRandomElementsArray(arraySize, valuesMaxCount)
+        val numbers = randomUtils.getListOfUniqueRandomElements(arraySize, numbersMaxCount)
+        val values = randomUtils.getListOfUniqueRandomElements(arraySize, valuesMaxCount)
         for (i in 0 until arraySize) {
             tilesList.add(Tile(numbers[i], values[i]))
         }
