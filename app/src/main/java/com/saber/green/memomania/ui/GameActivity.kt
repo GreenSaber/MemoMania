@@ -4,7 +4,9 @@ import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 import com.saber.green.memomania.R
+import com.saber.green.memomania.model.Game
 import com.saber.green.memomania.utils.AnimationUtils
 import kotlinx.android.synthetic.main.activity_game.*
 
@@ -16,6 +18,15 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         init()
+
+        val game = Game(1)
+        val activeTiles = game.getTiles()
+
+        val buttonsList = arrayListOf<MaterialButton>()
+        activeTiles?.forEach {
+            findViewById<MaterialButton>(resources.getIdentifier("materialButton${it.getNumber()}", "id", packageName))
+                .text = "${it.getValue()}"
+        }
     }
 
     fun init() {
