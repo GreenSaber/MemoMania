@@ -6,11 +6,13 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.button.MaterialButton
 import com.saber.green.memomania.R
 import com.saber.green.memomania.model.Game
 import com.saber.green.memomania.model.Tile
 import com.saber.green.memomania.utils.AnimationUtils
+import com.saber.green.memomania.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.activity_game.*
 import java.util.*
 
@@ -19,10 +21,12 @@ class GameActivity : AppCompatActivity() {
 
     private val activeButtons = arrayListOf<MaterialButton>()
     private lateinit var activeTiles : ArrayList<Tile>
+    private lateinit var gameViewModel: GameViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
         initActiveButtons()
         showActiveButtons(this)
@@ -31,11 +35,10 @@ class GameActivity : AppCompatActivity() {
 
         onLifeButtonClicked()
         onHeartIconClicked()
-        onButtonClicked()
     }
 
     fun initActiveButtons(){
-        activeTiles= Game(1).getActiveTiles()!!
+        activeTiles= gameViewModel.getActiveTiles()
         activeTiles.forEach {
             activeButtons.add(findViewById(resources.getIdentifier("materialButton${it.getNumber()}", "id", packageName)))
         }
@@ -80,13 +83,11 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-
     private fun getButtonValue(materialButton: MaterialButton) : String {
         val buttonNumber = materialButton.resources.getResourceName(materialButton.id).replace("${packageName}:id/materialButton", "").toInt()
         val tile = activeTiles.find { it.getNumber() == buttonNumber }
         return tile?.getValue().toString()
     }
-
 
     private fun onLifeButtonClicked() {
         level_card.setOnClickListener {
@@ -99,13 +100,6 @@ class GameActivity : AppCompatActivity() {
         heart_icon.setOnClickListener {
             AnimationUtils.colorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, 500)
             AnimationUtils.scaleAnimation(heart_icon, 1.5f, 500)
-        }
-    }
-
-    private fun onButtonClicked() {
-        materialButton4.setOnClickListener {
-            AnimationUtils.scaleAnimation(it, 1.07f, 200)
-
         }
     }
 }
