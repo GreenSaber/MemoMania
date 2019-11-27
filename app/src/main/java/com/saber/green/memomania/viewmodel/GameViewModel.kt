@@ -10,6 +10,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private lateinit var game: Game
 
     fun getActiveTiles(): ArrayList<Tile> {
-        return Game(1).getActiveTiles()!!
+        game = Game(1)
+        return game.getActiveTiles()!!
     }
 }
