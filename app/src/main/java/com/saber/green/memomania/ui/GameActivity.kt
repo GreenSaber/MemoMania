@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.button.MaterialButton
 import com.saber.green.memomania.R
-import com.saber.green.memomania.model.Game
 import com.saber.green.memomania.model.Tile
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.viewmodel.GameViewModel
@@ -76,9 +76,18 @@ class GameActivity : AppCompatActivity() {
         activeButtons.forEach { it ->
             it.setOnClickListener{
                 val button: MaterialButton = findViewById(it.id)
-                button.text = getButtonValue(button)
+                val buttonValue = getButtonValue(button)
+
+                if (gameViewModel.isValueCorrect(buttonValue)){
+                    Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "FAILED", Toast.LENGTH_SHORT).show()
+                }
+
+                button.text = buttonValue
                 AnimationUtils.scaleAnimation(button, 1.07f, 200)
                 button.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_button_color))
+                button.isClickable = false
             }
         }
     }
