@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.button.MaterialButton
 import com.saber.green.memomania.R
-import com.saber.green.memomania.model.Game
 import com.saber.green.memomania.model.Tile
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.viewmodel.GameViewModel
@@ -20,13 +20,16 @@ import java.util.*
 class GameActivity : AppCompatActivity() {
 
     private val activeButtons = arrayListOf<MaterialButton>()
-    private lateinit var activeTiles : ArrayList<Tile>
+    private lateinit var activeTiles: ArrayList<Tile>
     private lateinit var gameViewModel: GameViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+
+        setCurrentLevel()
+        setCurrentLifes()
 
         initActiveButtons()
         showActiveButtons(this)
@@ -37,8 +40,16 @@ class GameActivity : AppCompatActivity() {
         onHeartIconClicked()
     }
 
-    fun initActiveButtons(){
-        activeTiles= gameViewModel.getActiveTiles()
+    fun setCurrentLevel() {
+        level_number.text = gameViewModel.getGameLevel().toString()
+    }
+
+    fun setCurrentLifes() {
+        life_number.text = gameViewModel.getCurrentLifesCount().toString()
+    }
+
+    fun initActiveButtons() {
+        activeTiles = gameViewModel.getActiveTiles()
         activeTiles.forEach {
             activeButtons.add(findViewById(resources.getIdentifier("materialButton${it.getNumber()}", "id", packageName)))
         }
@@ -46,7 +57,7 @@ class GameActivity : AppCompatActivity() {
         activeButtons.forEach { it.isEnabled = false }
     }
 
-    fun showActiveButtons(context: Context){
+    fun showActiveButtons(context: Context) {
         val t = Timer(false)
         t.schedule(object : TimerTask() {
             override fun run() {
@@ -59,7 +70,7 @@ class GameActivity : AppCompatActivity() {
         }, 2000)
     }
 
-    fun hideActiveButtons(context: Context){
+    fun hideActiveButtons(context: Context) {
         val t = Timer(false)
         t.schedule(object : TimerTask() {
             override fun run() {
@@ -74,17 +85,28 @@ class GameActivity : AppCompatActivity() {
 
     fun onActiveButtonClick() {
         activeButtons.forEach { it ->
-            it.setOnClickListener{
+            it.setOnClickListener {
                 val button: MaterialButton = findViewById(it.id)
-                button.text = getButtonValue(button)
+                val buttonValue = getButtonValue(button)
+
+                if (gameViewModel.isValueCorrect(buttonValue)) {
+                    Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "FAILED", Toast.LENGTH_SHORT).show()
+                }
+
+                button.text = buttonValue
                 AnimationUtils.scaleAnimation(button, 1.07f, 200)
                 button.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_button_color))
+                button.isClickable = false
+
             }
         }
     }
 
-    private fun getButtonValue(materialButton: MaterialButton) : String {
-        val buttonNumber = materialButton.resources.getResourceName(materialButton.id).replace("${packageName}:id/materialButton", "").toInt()
+    private fun getButtonValue(materialButton: MaterialButton): String {
+        val buttonNumber = materialButton.resources.getResourceName(materialButton.id)
+            .replace("${packageName}:id/materialButton", "").toInt()
         val tile = activeTiles.find { it.getNumber() == buttonNumber }
         return tile?.getValue().toString()
     }

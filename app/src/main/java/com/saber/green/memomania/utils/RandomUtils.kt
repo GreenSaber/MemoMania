@@ -2,12 +2,15 @@ package com.saber.green.memomania.utils
 
 class RandomUtils {
 
-    fun getListOfUniqueRandomElements(arraySize: Int, maxValue: Int): MutableList<Int> {
-        val list = ArrayList<Int>(maxValue)
-        for (i in 1..maxValue) {
-            list.add(i)
+    companion object {
+        fun getListOfUniqueRandomElements(arraySize: Int, maxValue: Int): MutableList<Int> {
+            val list = ArrayList<Int>(maxValue)
+            for (i in 1..maxValue) {
+                list.add(i)
+            }
+            list.shuffle()
+            return list.subList(0, arraySize)
         }
-        list.shuffle()
-        return list.subList(0, arraySize)
     }
+
 }
