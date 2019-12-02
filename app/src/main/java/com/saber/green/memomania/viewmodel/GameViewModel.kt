@@ -3,37 +3,46 @@ package com.saber.green.memomania.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.saber.green.memomania.model.Game
+import com.saber.green.memomania.model.Life
 import com.saber.green.memomania.model.Tile
 
 class GameViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var gameLevel: Int = 1
+    private val game: Game = Game()
+    private val life: Life = Life()
     private var counter: Int = 0
-    private var activeTiles: ArrayList<Tile> = Game(getGameLevel()).getActiveTiles()!!
-    private val sortedTiles: List<Tile> = activeTiles.sortedWith(compareBy { it.getValue() })
-
-    private lateinit var game: Game
-
+    private var rightAnswearsCount: Int = 0
+    private var wrongAnswearsCount: Int = 0
 
     fun setGameLevel(gameLevelNumber: Int) {
-        gameLevel = gameLevelNumber
+        game.setLevel(gameLevelNumber)
     }
 
     fun getGameLevel(): Int {
-        return gameLevel
+        return game.getLevel()
     }
 
     fun getActiveTiles(): ArrayList<Tile> {
-        return activeTiles
+        return game.getActiveTiles()!!
+    }
+
+    fun getCurrentLifesCount(): Int {
+        return life.getLifesCount()
     }
 
     fun isValueCorrect(value: String): Boolean {
-        val isCorrect = sortedTiles[counter].getValue() == value.toInt()
+        val isCorrect = getSortedTiles()[counter].getValue() == value.toInt()
         counter++
+        if (isCorrect) rightAnswearsCount++ else wrongAnswearsCount
         return isCorrect
     }
 
-    private fun getSortedValues() {
+    fun isLevelFinished(): Boolean {
+        return getActiveTiles().size == rightAnswearsCount
+    }
+
+    private fun getSortedTiles(): List<Tile> {
+        return getActiveTiles().sortedWith(compareBy { it.getValue() })
 
     }
 

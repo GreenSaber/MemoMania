@@ -1,6 +1,6 @@
 package com.saber.green.memomania.model
 
-class Wishes {
+class Congratulations {
 
     private val wishesList = arrayListOf(
         "Super!",
