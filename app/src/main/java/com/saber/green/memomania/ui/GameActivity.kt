@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
@@ -90,15 +89,18 @@ class GameActivity : AppCompatActivity() {
                 val buttonValue = getButtonValue(button)
 
                 if (gameViewModel.isValueCorrect(buttonValue)) {
-                    Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show()
+                    AnimationUtils.viewColorAnimation1(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 1000)
+                    AnimationUtils.scaleAnimation(button, 1.07f, 500)
+                    button.text = buttonValue
+                    button.isClickable = false
                 } else {
-                    Toast.makeText(this, "FAILED", Toast.LENGTH_SHORT).show()
+                    AnimationUtils.viewColorAnimation(this, button, R.color.accent_color, R.color.red, 500, 1)
+                    AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, 500)
+                    AnimationUtils.scaleAnimation(heart_icon, 1.5f, 500)
+                    AnimationUtils.scaleAnimation(button, 1.07f, 500)
                 }
 
-                button.text = buttonValue
-                AnimationUtils.scaleAnimation(button, 1.07f, 200)
-                button.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_button_color))
-                button.isClickable = false
+
 
             }
         }
@@ -120,7 +122,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun onHeartIconClicked() {
         heart_icon.setOnClickListener {
-            AnimationUtils.colorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, 500)
+            AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, 500)
             AnimationUtils.scaleAnimation(heart_icon, 1.5f, 500)
         }
     }
