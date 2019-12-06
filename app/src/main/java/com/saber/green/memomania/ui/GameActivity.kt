@@ -98,9 +98,13 @@ class GameActivity : AppCompatActivity() {
                     AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, 500)
                     AnimationUtils.scaleAnimation(heart_icon, 1.5f, 500)
                     AnimationUtils.scaleAnimation(button, 1.07f, 500)
+                    gameViewModel.reduceLifeCounter()
                 }
 
-
+                if (gameViewModel.isLevelPassed()){
+                    val intent = Intent(this, NextLevelActivity::class.java)
+                    startActivity(intent)
+                }
 
             }
         }
@@ -115,7 +119,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun onLifeButtonClicked() {
         level_card.setOnClickListener {
-            val intent = Intent(this, LevelActivity::class.java)
+            val intent = Intent(this, NextLevelActivity::class.java)
             startActivity(intent)
         }
     }

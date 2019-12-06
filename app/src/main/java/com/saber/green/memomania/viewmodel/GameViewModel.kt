@@ -8,21 +8,20 @@ import com.saber.green.memomania.model.Tile
 
 class GameViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val game: Game = Game()
     private val life: Life = Life()
     private var rightAnswearsCount: Int = 0
     private var wrongAnswearsCount: Int = 0
 
     fun setGameLevel(gameLevelNumber: Int) {
-        game.setLevel(gameLevelNumber)
+        Game.setLevel(gameLevelNumber)
     }
 
     fun getGameLevel(): Int {
-        return game.getLevel()
+        return Game.getLevel()
     }
 
     fun getActiveTiles(): ArrayList<Tile> {
-        return game.getActiveTiles()!!
+        return Game.getActiveTiles()!!
     }
 
     fun getCurrentLifesCount(): Int {
@@ -35,8 +34,18 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         return isCorrect
     }
 
-    fun isLevelFinished(): Boolean {
-        return getActiveTiles().size == rightAnswearsCount
+    fun reduceLifeCounter(){
+        //TODO
+    }
+
+    fun isLevelPassed(): Boolean {
+        val isLevelPassed = getActiveTiles().size == rightAnswearsCount
+        if (isLevelPassed) {
+            val currentLevel = getGameLevel()
+            val newLevel = currentLevel+1
+            setGameLevel(newLevel)
+        }
+        return isLevelPassed
     }
 
     private fun getSortedTiles(): List<Tile> {
