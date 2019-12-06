@@ -10,7 +10,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     private val game: Game = Game()
     private val life: Life = Life()
-    private var counter: Int = 0
     private var rightAnswearsCount: Int = 0
     private var wrongAnswearsCount: Int = 0
 
@@ -31,9 +30,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun isValueCorrect(value: String): Boolean {
-        val isCorrect = getSortedTiles()[counter].getValue() == value.toInt()
-        counter++
-        if (isCorrect) rightAnswearsCount++ else wrongAnswearsCount
+        val isCorrect = getSortedTiles()[rightAnswearsCount].getValue() == value.toInt()
+        if (isCorrect) rightAnswearsCount++ else wrongAnswearsCount++
         return isCorrect
     }
 
