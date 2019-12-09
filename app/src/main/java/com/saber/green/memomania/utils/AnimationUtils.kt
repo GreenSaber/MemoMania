@@ -14,6 +14,8 @@ class AnimationUtils {
 
     companion object{
 
+        val DURATION : Long = 500
+
         fun scaleAnimation(view: View, scaleSize: Float, animationDuration: Long) {
             val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, scaleSize)
             val scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, scaleSize)
