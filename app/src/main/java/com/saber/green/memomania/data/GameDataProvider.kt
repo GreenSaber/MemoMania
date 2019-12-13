@@ -28,6 +28,11 @@ class GameDataProvider {
         return tilesArrayForEachLevel
     }
 
+    @Synchronized
+    fun refreshData() {
+        //TODO
+    }
+
     private fun getTilesArrayForEachLevel(): ArrayList<ArrayList<Tile>> {
         val tilesArrayForEachLevel = ArrayList<ArrayList<Tile>>()
         for (i in 1..10) {

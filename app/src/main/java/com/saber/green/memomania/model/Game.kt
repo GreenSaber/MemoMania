@@ -4,18 +4,21 @@ import com.saber.green.memomania.data.GameDataProvider
 
 class Game {
 
-    private var levelNumber: Int = 1
+    companion object {
+        private var levelNumber: Int = 1
 
 
-    fun getLevel(): Int {
-        return levelNumber
+        fun getLevel(): Int {
+            return levelNumber
+        }
+
+        fun setLevel(number: Int) {
+            levelNumber = number
+        }
+
+        fun getActiveTiles(): ArrayList<Tile>? {
+            return GameDataProvider.getInstance()?.getActiveTilesForLevel()?.get(levelNumber-1)
+        }
     }
 
-    fun setLevel(number: Int) {
-        levelNumber = number
-    }
-
-    fun getActiveTiles(): ArrayList<Tile>? {
-        return GameDataProvider.getInstance()?.getActiveTilesForLevel()?.get(levelNumber-1)
-    }
 }

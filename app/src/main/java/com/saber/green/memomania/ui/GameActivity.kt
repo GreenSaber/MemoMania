@@ -6,6 +6,7 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.button.MaterialButton
 import com.saber.green.memomania.R
@@ -57,8 +58,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun showActiveButtons(context: Context) {
-        val t = Timer(false)
-        t.schedule(object : TimerTask() {
+        Timer(false).schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
                     activeButtons.forEach { it.setBackgroundColor(ContextCompat.getColor(context, R.color.dark_button_color)) }
@@ -70,8 +70,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun hideActiveButtons(context: Context) {
-        val t = Timer(false)
-        t.schedule(object : TimerTask() {
+        Timer(false).schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
                     activeButtons.forEach { it.setBackgroundColor(ContextCompat.getColor(context, R.color.accent_color)) }
@@ -89,18 +88,36 @@ class GameActivity : AppCompatActivity() {
                 val buttonValue = getButtonValue(button)
 
                 if (gameViewModel.isValueCorrect(buttonValue)) {
-                    AnimationUtils.viewColorAnimation1(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 1000)
-                    AnimationUtils.scaleAnimation(button, 1.07f, 500)
+                    AnimationUtils.viewColorAnimation1(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 2 * AnimationUtils.DURATION)
+                    AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
                     button.text = buttonValue
                     button.isClickable = false
                 } else {
-                    AnimationUtils.viewColorAnimation(this, button, R.color.accent_color, R.color.red, 500, 1)
-                    AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, 500)
-                    AnimationUtils.scaleAnimation(heart_icon, 1.5f, 500)
-                    AnimationUtils.scaleAnimation(button, 1.07f, 500)
+                    AnimationUtils.viewColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.DURATION, 1)
+                    AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, AnimationUtils.DURATION)
+                    AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.DURATION)
+                    AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
+                    gameViewModel.reduceLifeCounter()
+                    Timer(false).schedule(object : TimerTask() {
+                        override fun run() { runOnUiThread { life_number.text = gameViewModel.getCurrentLifesCount().toString() } }
+                    }, AnimationUtils.DURATION)
                 }
 
+                if (gameViewModel.isLevelPassed()){
+                    val intent = Intent(this, NextLevelActivity::class.java)
+                    Timer(false).schedule(object : TimerTask() {
+                        override fun run() { runOnUiThread { startActivity(intent) } }
+                    }, AnimationUtils.DURATION)
 
+                }
+
+                if (gameViewModel.isGameOver()){
+                    val intent = Intent(this, GameOverActivity::class.java)
+                    Timer(false).schedule(object : TimerTask() {
+                        override fun run() { runOnUiThread { startActivity(intent) } }
+                    }, AnimationUtils.DURATION)
+
+                }
 
             }
         }
@@ -115,7 +132,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun onLifeButtonClicked() {
         level_card.setOnClickListener {
-            val intent = Intent(this, LevelActivity::class.java)
+            val intent = Intent(this, NextLevelActivity::class.java)
             startActivity(intent)
         }
     }

@@ -8,37 +8,50 @@ import com.saber.green.memomania.model.Tile
 
 class GameViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val game: Game = Game()
-    private val life: Life = Life()
-    private var counter: Int = 0
     private var rightAnswearsCount: Int = 0
     private var wrongAnswearsCount: Int = 0
 
     fun setGameLevel(gameLevelNumber: Int) {
-        game.setLevel(gameLevelNumber)
+        Game.setLevel(gameLevelNumber)
     }
 
     fun getGameLevel(): Int {
-        return game.getLevel()
+        return Game.getLevel()
     }
 
     fun getActiveTiles(): ArrayList<Tile> {
-        return game.getActiveTiles()!!
+        return Game.getActiveTiles()!!
     }
 
     fun getCurrentLifesCount(): Int {
-        return life.getLifesCount()
+        return Life.getLifesCount()
     }
 
     fun isValueCorrect(value: String): Boolean {
-        val isCorrect = getSortedTiles()[counter].getValue() == value.toInt()
-        counter++
-        if (isCorrect) rightAnswearsCount++ else wrongAnswearsCount
+        val isCorrect = getSortedTiles()[rightAnswearsCount].getValue() == value.toInt()
+        if (isCorrect) rightAnswearsCount++ else wrongAnswearsCount++
         return isCorrect
     }
 
-    fun isLevelFinished(): Boolean {
-        return getActiveTiles().size == rightAnswearsCount
+    fun reduceLifeCounter() {
+        val currentLifesCount = Life.getLifesCount()
+        Life.setLifesCount(currentLifesCount - 1)
+    }
+
+    fun isLevelPassed(): Boolean {
+        val isLevelPassed = getActiveTiles().size == rightAnswearsCount
+        if (isLevelPassed) {
+            val currentLevel = getGameLevel()
+            val newLevel = currentLevel + 1
+            setGameLevel(newLevel)
+        }
+        return isLevelPassed
+    }
+
+    fun isGameOver(): Boolean {
+        val isGameOver = Life.getLifesCount() < 1
+        return isGameOver
+
     }
 
     private fun getSortedTiles(): List<Tile> {
