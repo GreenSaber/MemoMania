@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.button.MaterialButton
 import com.saber.green.memomania.R
-import com.saber.green.memomania.model.Tile
+import com.saber.green.memomania.model.GameLifecycle
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.activity_game.*
@@ -19,45 +19,48 @@ import java.util.*
 
 class GameActivity : AppCompatActivity() {
 
-    private val activeButtons = arrayListOf<MaterialButton>()
-    private lateinit var activeTiles: ArrayList<Tile>
     private lateinit var gameViewModel: GameViewModel
+    private val activeButtons = arrayListOf<MaterialButton>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
-        setCurrentLevel()
-        setCurrentLifes()
+        initLevelObserver()
+        initLifeObserver()
 
-        initActiveButtons()
-        showActiveButtons(this)
-        hideActiveButtons(this)
+        initHighlightShowAndHideActiveButtons(this)
         onActiveButtonClick()
-
-        onLifeButtonClicked()
-        onHeartIconClicked()
     }
 
-    fun setCurrentLevel() {
-        level_number.text = gameViewModel.getGameLevel().toString()
+    fun initLevelObserver() {
+        gameViewModel.getLevelCount().observe(this, Observer {
+            level_number.text = gameViewModel.getLevelCount().value
+        })
     }
 
-    fun setCurrentLifes() {
-        life_number.text = gameViewModel.getCurrentLifesCount().toString()
+    fun initLifeObserver() {
+        gameViewModel.getLifeCount().observe(this, Observer {
+            Timer(false).schedule(object : TimerTask() {
+                override fun run() {
+                    runOnUiThread { life_number.text = gameViewModel.getLifeCount().value }
+                }
+            }, AnimationUtils.DURATION)
+        })
     }
 
-    fun initActiveButtons() {
-        activeTiles = gameViewModel.getActiveTiles()
-        activeTiles.forEach {
+    fun initHighlightShowAndHideActiveButtons(context : Context) {
+        /*init active buttons*/
+        gameViewModel.getActiveTiles().forEach {
             activeButtons.add(findViewById(resources.getIdentifier("materialButton${it.getNumber()}", "id", packageName)))
         }
+
+        /*highlight active buttons*/
         activeButtons.forEach { it.setBackgroundColor(ContextCompat.getColor(this, R.color.accent_color)) }
         activeButtons.forEach { it.isEnabled = false }
-    }
 
-    fun showActiveButtons(context: Context) {
+        /*show active buttons values*/
         Timer(false).schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
@@ -67,9 +70,8 @@ class GameActivity : AppCompatActivity() {
                 }
             }
         }, 2000)
-    }
 
-    fun hideActiveButtons(context: Context) {
+        /*hide active buttons values*/
         Timer(false).schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
@@ -87,38 +89,54 @@ class GameActivity : AppCompatActivity() {
                 val button: MaterialButton = findViewById(it.id)
                 val buttonValue = getButtonValue(button)
 
-                if (gameViewModel.isValueCorrect(buttonValue)) {
-                    AnimationUtils.viewColorAnimation1(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 2 * AnimationUtils.DURATION)
-                    AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
-                    button.text = buttonValue
-                    button.isClickable = false
-                } else {
-                    AnimationUtils.viewColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.DURATION, 1)
-                    AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, AnimationUtils.DURATION)
-                    AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.DURATION)
-                    AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
-                    gameViewModel.reduceLifeCounter()
-                    Timer(false).schedule(object : TimerTask() {
-                        override fun run() { runOnUiThread { life_number.text = gameViewModel.getCurrentLifesCount().toString() } }
-                    }, AnimationUtils.DURATION)
+                when (gameViewModel.getGameLifecycle(buttonValue)) {
+                    GameLifecycle.CORRECT_VALUE -> {
+                        AnimationUtils.viewColorAnimation1(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 2 * AnimationUtils.DURATION)
+                        AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
+                        button.text = buttonValue
+                        button.isClickable = false
+                    }
+
+                    GameLifecycle.INCORRECT_VALUE -> {
+                        AnimationUtils.viewColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.DURATION, 1)
+                        AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, AnimationUtils.DURATION)
+                        AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.DURATION)
+                        AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
+                    }
+
+                    GameLifecycle.NEXT_LEVEL -> {
+
+                        AnimationUtils.viewColorAnimation1(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 2 * AnimationUtils.DURATION)
+                        AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
+                        button.text = buttonValue
+                        button.isClickable = false
+
+                        val intent = Intent(this, NextLevelActivity::class.java)
+                        Timer(false).schedule(object : TimerTask() {
+                            override fun run() {
+                                runOnUiThread { startActivity(intent) }
+                            }
+                        }, AnimationUtils.DURATION)
+                    }
+
+                    GameLifecycle.WIN -> {
+                        val intent = Intent(this, GameOverActivity::class.java)
+                        Timer(false).schedule(object : TimerTask() {
+                            override fun run() {
+                                runOnUiThread { startActivity(intent) }
+                            }
+                        }, AnimationUtils.DURATION)
+                    }
+
+                    GameLifecycle.GAME_OVER -> {
+                        val intent = Intent(this, GameOverActivity::class.java)
+                        Timer(false).schedule(object : TimerTask() {
+                            override fun run() {
+                                runOnUiThread { startActivity(intent) }
+                            }
+                        }, AnimationUtils.DURATION)
+                    }
                 }
-
-                if (gameViewModel.isLevelPassed()){
-                    val intent = Intent(this, NextLevelActivity::class.java)
-                    Timer(false).schedule(object : TimerTask() {
-                        override fun run() { runOnUiThread { startActivity(intent) } }
-                    }, AnimationUtils.DURATION)
-
-                }
-
-                if (gameViewModel.isGameOver()){
-                    val intent = Intent(this, GameOverActivity::class.java)
-                    Timer(false).schedule(object : TimerTask() {
-                        override fun run() { runOnUiThread { startActivity(intent) } }
-                    }, AnimationUtils.DURATION)
-
-                }
-
             }
         }
     }
@@ -126,21 +144,7 @@ class GameActivity : AppCompatActivity() {
     private fun getButtonValue(materialButton: MaterialButton): String {
         val buttonNumber = materialButton.resources.getResourceName(materialButton.id)
             .replace("${packageName}:id/materialButton", "").toInt()
-        val tile = activeTiles.find { it.getNumber() == buttonNumber }
+        val tile = gameViewModel.getActiveTiles().find { it.getNumber() == buttonNumber }
         return tile?.getValue().toString()
-    }
-
-    private fun onLifeButtonClicked() {
-        level_card.setOnClickListener {
-            val intent = Intent(this, NextLevelActivity::class.java)
-            startActivity(intent)
-        }
-    }
-
-    private fun onHeartIconClicked() {
-        heart_icon.setOnClickListener {
-            AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, 500)
-            AnimationUtils.scaleAnimation(heart_icon, 1.5f, 500)
-        }
     }
 }
