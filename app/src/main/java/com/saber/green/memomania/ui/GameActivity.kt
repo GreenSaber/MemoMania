@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.button.MaterialButton
 import com.saber.green.memomania.R
 import com.saber.green.memomania.model.GameLifecycle
+import com.saber.green.memomania.model.Tile
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.activity_game.*
@@ -20,17 +21,22 @@ import java.util.*
 class GameActivity : AppCompatActivity() {
 
     private lateinit var gameViewModel: GameViewModel
-    private val activeButtons = arrayListOf<MaterialButton>()
+    private lateinit var activeTiles: ArrayList<Tile>
+    private val activeButtons = ArrayList<MaterialButton>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
+        initActiveButtons()
+        highlightActiveButtons(this)
+        showValueOfActiveButtons(this)
+        hideValueOfActiveButtons(this)
+
         initLevelObserver()
         initLifeObserver()
 
-        initHighlightShowAndHideActiveButtons(this)
         onActiveButtonClick()
     }
 
@@ -50,17 +56,19 @@ class GameActivity : AppCompatActivity() {
         })
     }
 
-    fun initHighlightShowAndHideActiveButtons(context : Context) {
-        /*init active buttons*/
-        gameViewModel.getActiveTiles().forEach {
+    fun initActiveButtons() {
+        activeTiles = gameViewModel.getActiveTiles()
+        activeTiles.forEach {
             activeButtons.add(findViewById(resources.getIdentifier("materialButton${it.getNumber()}", "id", packageName)))
         }
+    }
 
-        /*highlight active buttons*/
-        activeButtons.forEach { it.setBackgroundColor(ContextCompat.getColor(this, R.color.accent_color)) }
+    fun highlightActiveButtons(context: Context) {
+        activeButtons.forEach { it.setBackgroundColor(ContextCompat.getColor(context, R.color.accent_color)) }
         activeButtons.forEach { it.isEnabled = false }
+    }
 
-        /*show active buttons values*/
+    fun showValueOfActiveButtons(context: Context) {
         Timer(false).schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
@@ -70,8 +78,9 @@ class GameActivity : AppCompatActivity() {
                 }
             }
         }, 2000)
+    }
 
-        /*hide active buttons values*/
+    fun hideValueOfActiveButtons(context: Context) {
         Timer(false).schedule(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
@@ -114,7 +123,10 @@ class GameActivity : AppCompatActivity() {
                         val intent = Intent(this, NextLevelActivity::class.java)
                         Timer(false).schedule(object : TimerTask() {
                             override fun run() {
-                                runOnUiThread { startActivity(intent) }
+                                runOnUiThread {
+                                    startActivity(intent)
+                                    overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
+                                }
                             }
                         }, AnimationUtils.DURATION)
                     }
@@ -129,6 +141,12 @@ class GameActivity : AppCompatActivity() {
                     }
 
                     GameLifecycle.GAME_OVER -> {
+
+                        AnimationUtils.viewColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.DURATION, 1)
+                        AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, AnimationUtils.DURATION)
+                        AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.DURATION)
+                        AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
+
                         val intent = Intent(this, GameOverActivity::class.java)
                         Timer(false).schedule(object : TimerTask() {
                             override fun run() {
@@ -144,7 +162,7 @@ class GameActivity : AppCompatActivity() {
     private fun getButtonValue(materialButton: MaterialButton): String {
         val buttonNumber = materialButton.resources.getResourceName(materialButton.id)
             .replace("${packageName}:id/materialButton", "").toInt()
-        val tile = gameViewModel.getActiveTiles().find { it.getNumber() == buttonNumber }
+        val tile = activeTiles.find { it.getNumber() == buttonNumber }
         return tile?.getValue().toString()
     }
 }

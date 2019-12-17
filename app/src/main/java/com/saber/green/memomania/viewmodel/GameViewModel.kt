@@ -30,28 +30,30 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getGameLifecycle(value: String): GameLifecycle {
-        if ((getSortedTiles()[rightAnswearsCount].getValue() == value.toInt()) && Life.getLifesCount() > 0) {
+        if (getSortedTiles()[rightAnswearsCount].getValue() == value.toInt()) {
             rightAnswearsCount++
-            if ((getActiveTiles().size == rightAnswearsCount) && (Life.getLifesCount() > 0) && (Game.getLevel() < 10)) {
+            if (rightAnswearsCount == getActiveTiles().size) {
                 val level = Game.getLevel() + 1
                 Game.setLevel(level)
-                return GameLifecycle.NEXT_LEVEL
+                levelCount.value = Game.getLevel().toString()
+                if (Game.getLevel() < 10) {
+                    return GameLifecycle.NEXT_LEVEL
+                } else {
+                    return GameLifecycle.WIN
+                }
             } else {
                 return GameLifecycle.CORRECT_VALUE
             }
-        }
-        if ((getSortedTiles()[rightAnswearsCount].getValue() != value.toInt()) && Life.getLifesCount() > 0) {
+        } else {
             wrongAnswearsCount++
             val currentLifesCount = Life.getLifesCount() - 1
             Life.setLifesCount(currentLifesCount)
             lifeCount.value = Life.getLifesCount().toString()
-            return GameLifecycle.INCORRECT_VALUE
-        }
-
-        if ((getActiveTiles().size == rightAnswearsCount) && (Life.getLifesCount() > 0) && (Game.getLevel() >= 10)) {
-            return GameLifecycle.WIN
-        } else {
-            return GameLifecycle.GAME_OVER
+            if (Life.getLifesCount() > 0) {
+                return GameLifecycle.INCORRECT_VALUE
+            } else {
+                return GameLifecycle.GAME_OVER
+            }
         }
     }
 
