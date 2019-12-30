@@ -101,7 +101,7 @@
     </com.google.android.material.button.MaterialButton>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/refresh_button"
+        android:id="@+id/restart_button"
         style="@style/homeRefreshButton"
         android:layout_gravity="center"
         android:layout_marginBottom="32dp"
@@ -130,62 +130,62 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton1"
+            android:id="@+id/gameTileButton1"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton2"
+            android:id="@+id/gameTileButton2"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton3"
+            android:id="@+id/gameTileButton3"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton4"
+            android:id="@+id/gameTileButton4"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton5"
+            android:id="@+id/gameTileButton5"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton6"
+            android:id="@+id/gameTileButton6"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton7"
+            android:id="@+id/gameTileButton7"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton8"
+            android:id="@+id/gameTileButton8"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton9"
+            android:id="@+id/gameTileButton9"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton10"
+            android:id="@+id/gameTileButton0"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton11"
+            android:id="@+id/gameTileButton11"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton12"
+            android:id="@+id/gameTileButton12"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
     </GridLayout>

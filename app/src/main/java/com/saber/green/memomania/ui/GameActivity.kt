@@ -11,17 +11,16 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.button.MaterialButton
 import com.saber.green.memomania.R
 import com.saber.green.memomania.model.GameLifecycle
-import com.saber.green.memomania.model.Tile
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.activity_game.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class GameActivity : AppCompatActivity() {
 
     private lateinit var gameViewModel: GameViewModel
-    private lateinit var activeTiles: ArrayList<Tile>
     private val activeButtons = ArrayList<MaterialButton>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +37,8 @@ class GameActivity : AppCompatActivity() {
         initLifeObserver()
 
         onActiveButtonClick()
+        onHomeButtonClick()
+        onRestartButtonClick()
     }
 
     fun initLevelObserver() {
@@ -50,16 +51,17 @@ class GameActivity : AppCompatActivity() {
         gameViewModel.getLifeCount().observe(this, Observer {
             Timer(false).schedule(object : TimerTask() {
                 override fun run() {
-                    runOnUiThread { life_number.text = gameViewModel.getLifeCount().value }
+                    runOnUiThread {
+                        life_number.text = gameViewModel.getLifeCount().value
+                    }
                 }
             }, AnimationUtils.DURATION)
         })
     }
 
     fun initActiveButtons() {
-        activeTiles = gameViewModel.getActiveTiles()
-        activeTiles.forEach {
-            activeButtons.add(findViewById(resources.getIdentifier("materialButton${it.getNumber()}", "id", packageName)))
+        gameViewModel.getActiveTiles().forEach {
+            activeButtons.add(findViewById(resources.getIdentifier("gameTileButton${it.getNumber()}", "id", packageName)))
         }
     }
 
@@ -162,6 +164,22 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
+    fun onHomeButtonClick() {
+        home_button.setOnClickListener {
+            val intent = Intent(this, MenuActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
+        }
+    }
+
+    fun onRestartButtonClick() {
+        restart_button.setOnClickListener {
+            val intent = Intent(this, GameActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.anim_slide_in_top, R.anim.anim_slide_out_top)
+        }
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, MenuActivity::class.java)
@@ -171,8 +189,8 @@ class GameActivity : AppCompatActivity() {
 
     private fun getButtonValue(materialButton: MaterialButton): String {
         val buttonNumber = materialButton.resources.getResourceName(materialButton.id)
-            .replace("${packageName}:id/materialButton", "").toInt()
-        val tile = activeTiles.find { it.getNumber() == buttonNumber }
+            .replace("${packageName}:id/gameTileButton", "").toInt()
+        val tile = gameViewModel.getActiveTiles().find { it.getNumber() == buttonNumber }
         return tile?.getValue().toString()
     }
 }
