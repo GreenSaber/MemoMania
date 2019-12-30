@@ -30,7 +30,7 @@ class GameDataProvider {
 
     @Synchronized
     fun refreshData() {
-        //TODO
+        tilesArrayForEachLevel = getTilesArrayForEachLevel()
     }
 
     private fun getTilesArrayForEachLevel(): ArrayList<ArrayList<Tile>> {

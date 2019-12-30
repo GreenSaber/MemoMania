@@ -130,7 +130,7 @@
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/home"
+            android:id="@+id/get_life_button"
             style="@style/menuButton"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/accent_color"

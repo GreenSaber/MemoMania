@@ -99,6 +99,7 @@ class GameActivity : AppCompatActivity() {
                 val buttonValue = getButtonValue(button)
 
                 when (gameViewModel.getGameLifecycle(buttonValue)) {
+
                     GameLifecycle.CORRECT_VALUE -> {
                         AnimationUtils.viewColorAnimation1(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 2 * AnimationUtils.DURATION)
                         AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
@@ -141,7 +142,6 @@ class GameActivity : AppCompatActivity() {
                     }
 
                     GameLifecycle.GAME_OVER -> {
-
                         AnimationUtils.viewColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.DURATION, 1)
                         AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, AnimationUtils.DURATION)
                         AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.DURATION)
@@ -150,13 +150,23 @@ class GameActivity : AppCompatActivity() {
                         val intent = Intent(this, GameOverActivity::class.java)
                         Timer(false).schedule(object : TimerTask() {
                             override fun run() {
-                                runOnUiThread { startActivity(intent) }
+                                runOnUiThread {
+                                    startActivity(intent)
+                                    overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
+                                }
                             }
                         }, AnimationUtils.DURATION)
                     }
                 }
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MenuActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
     }
 
     private fun getButtonValue(materialButton: MaterialButton): String {

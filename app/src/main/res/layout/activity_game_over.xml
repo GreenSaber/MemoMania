@@ -44,7 +44,7 @@
     </TextView>
 
     <TextView
-        android:id="@+id/next_level_number"
+        android:id="@+id/finished_level_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -61,7 +61,7 @@
     </TextView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/home"
+        android:id="@+id/game_over_home_button"
         style="@style/menuButton"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/accent_color"
@@ -73,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/next_level_number">
+        app:layout_constraintTop_toBottomOf="@+id/finished_level_number">
     </com.google.android.material.button.MaterialButton>
 
 

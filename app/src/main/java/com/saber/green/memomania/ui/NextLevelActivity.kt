@@ -2,8 +2,8 @@ package com.saber.green.memomania.ui
 
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -11,9 +11,7 @@ import com.saber.green.memomania.R
 import com.saber.green.memomania.databinding.ActivityNextLevelBindingImpl
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.viewmodel.NextLevelViewModel
-import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.activity_next_level.*
-import java.util.*
 
 class NextLevelActivity : AppCompatActivity() {
 
@@ -57,5 +55,11 @@ class NextLevelActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MenuActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
+    }
 
 }

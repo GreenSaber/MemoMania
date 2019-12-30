@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.saber.green.memomania.model.Game
 import com.saber.green.memomania.model.GameLifecycle
-import com.saber.green.memomania.model.Life
 import com.saber.green.memomania.model.Tile
 
 class GameViewModel(application: Application) : AndroidViewModel(application) {
@@ -17,7 +16,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private val levelCount = MutableLiveData<String>()
 
     init {
-        lifeCount.value = Life.getLifesCount().toString()
+        lifeCount.value = Game.getLifesCount().toString()
         levelCount.value = Game.getLevel().toString()
     }
 
@@ -46,12 +45,13 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             }
         } else {
             wrongAnswearsCount++
-            val currentLifesCount = Life.getLifesCount() - 1
-            Life.setLifesCount(currentLifesCount)
-            lifeCount.value = Life.getLifesCount().toString()
-            if (Life.getLifesCount() > 0) {
+            val currentLifesCount = Game.getLifesCount() - 1
+            Game.setLifesCount(currentLifesCount)
+            lifeCount.value = Game.getLifesCount().toString()
+            if (Game.getLifesCount() > 0) {
                 return GameLifecycle.INCORRECT_VALUE
             } else {
+                Game.resetGame()
                 return GameLifecycle.GAME_OVER
             }
         }
