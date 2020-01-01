@@ -3,16 +3,15 @@ package com.saber.green.memomania.ui
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.saber.green.memomania.R
-import com.saber.green.memomania.databinding.ActivityNextLevelBindingImpl
 import com.saber.green.memomania.utils.AnimationUtils
+import com.saber.green.memomania.utils.MotivationTextUtils
 import com.saber.green.memomania.viewmodel.NextLevelViewModel
 import kotlinx.android.synthetic.main.activity_next_level.*
+import java.util.*
 
 class NextLevelActivity : AppCompatActivity() {
 
@@ -22,14 +21,15 @@ class NextLevelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_next_level)
         nextLevelViewModel = ViewModelProviders.of(this).get(NextLevelViewModel::class.java)
-        val binding: ActivityNextLevelBindingImpl =
-            DataBindingUtil.setContentView(this, R.layout.activity_next_level)
-        binding.lifecycleOwner = this
-        binding.viewmodel = nextLevelViewModel
+        initMotivationText()
         initLevelCountObservable()
         initLifeObserver()
         onReadyButtonClick()
         onGetLifeButtonClick()
+    }
+
+    fun initMotivationText(){
+        next_level_motivation_text.text = MotivationTextUtils.getRandomText()
     }
 
     fun initLevelCountObservable() {
@@ -58,11 +58,11 @@ class NextLevelActivity : AppCompatActivity() {
     }
 
     fun onGetLifeButtonClick(){
-        get_life_button.setOnClickListener(View.OnClickListener {
+        get_life_button.setOnClickListener {
             AnimationUtils.layoutColorAnimation(this, life_card_next_menu.background as GradientDrawable, R.color.accent_color, R.color.green, AnimationUtils.DURATION)
             AnimationUtils.scaleAnimation(heart_icon_next_menu, 1.5f, AnimationUtils.DURATION)
             nextLevelViewModel.addLife()
-        })
+        }
     }
 
     override fun onBackPressed() {

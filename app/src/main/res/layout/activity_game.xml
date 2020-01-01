@@ -175,7 +175,7 @@
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton0"
+            android:id="@+id/gameTileButton10"
             style="@style/gridButton">
         </com.google.android.material.button.MaterialButton>
 

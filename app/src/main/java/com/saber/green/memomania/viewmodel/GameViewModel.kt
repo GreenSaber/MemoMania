@@ -35,9 +35,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 val level = Game.getLevel() + 1
                 Game.setLevel(level)
                 levelCount.value = Game.getLevel().toString()
-                if (Game.getLevel() < 10) {
+                //TODO to change on 10 value below
+                if (Game.getLevel() < 3) {
                     return GameLifecycle.NEXT_LEVEL
                 } else {
+                    Game.resetGame()
                     return GameLifecycle.WIN
                 }
             } else {
@@ -55,6 +57,10 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 return GameLifecycle.GAME_OVER
             }
         }
+    }
+
+    fun resetGame(){
+        Game.resetGame()
     }
 
     private fun getSortedTiles(): List<Tile> {

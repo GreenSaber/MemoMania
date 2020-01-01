@@ -23,6 +23,7 @@
             android:id="@+id/life_card_next_menu"
             android:layout_width="104dp"
             android:layout_height="80dp"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="32dp"
             android:background="@drawable/shape_level"
             app:layout_constraintBottom_toTopOf="@+id/game_over_text"
@@ -64,9 +65,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/game_over_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/next_level_motivation_text"
+            android:layout_width="282dp"
+            android:layout_height="115dp"
             android:layout_marginTop="160dp"
             android:fontFamily="@font/raleway_bold"
             android:gravity="center"
@@ -76,8 +77,7 @@
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
+            app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <TextView
             android:id="@+id/level_statistics"
@@ -93,7 +93,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/game_over_text">
+            app:layout_constraintTop_toBottomOf="@id/next_level_motivation_text">
         </TextView>
 
         <TextView

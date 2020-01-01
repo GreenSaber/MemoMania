@@ -44,7 +44,7 @@
     </TextView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/home"
+        android:id="@+id/win_home_button"
         style="@style/menuButton"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/accent_color"

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -20,6 +21,7 @@ import kotlin.collections.ArrayList
 
 class GameActivity : AppCompatActivity() {
 
+    private val TAG = "GameActivity"
     private lateinit var gameViewModel: GameViewModel
     private val activeButtons = ArrayList<MaterialButton>()
 
@@ -60,7 +62,10 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun initActiveButtons() {
-        gameViewModel.getActiveTiles().forEach {
+        val activeTiles = gameViewModel.getActiveTiles()
+        Log.i(TAG, "Tiles size : ${activeTiles.size}")
+        activeTiles.forEach { Log.i(TAG, "Tile [number : ${it.getNumber()}; value : ${it.getValue()}]") }
+        activeTiles.forEach {
             activeButtons.add(findViewById(resources.getIdentifier("gameTileButton${it.getNumber()}", "id", packageName)))
         }
     }
@@ -135,7 +140,7 @@ class GameActivity : AppCompatActivity() {
                     }
 
                     GameLifecycle.WIN -> {
-                        val intent = Intent(this, GameOverActivity::class.java)
+                        val intent = Intent(this, WinActivity::class.java)
                         Timer(false).schedule(object : TimerTask() {
                             override fun run() {
                                 runOnUiThread { startActivity(intent) }
@@ -174,6 +179,7 @@ class GameActivity : AppCompatActivity() {
 
     fun onRestartButtonClick() {
         restart_button.setOnClickListener {
+            gameViewModel.resetGame()
             val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.anim_slide_in_top, R.anim.anim_slide_out_top)
