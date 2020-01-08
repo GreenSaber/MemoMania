@@ -13,6 +13,7 @@ import com.google.android.material.button.MaterialButton
 import com.saber.green.memomania.R
 import com.saber.green.memomania.model.GameLifecycle
 import com.saber.green.memomania.utils.AnimationUtils
+import com.saber.green.memomania.utils.VibrationUtils
 import com.saber.green.memomania.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.activity_game.*
 import java.util.*
@@ -23,12 +24,15 @@ class GameActivity : AppCompatActivity() {
 
     private val TAG = "GameActivity"
     private lateinit var gameViewModel: GameViewModel
+    private lateinit var vibrationUtils: VibrationUtils
+
     private val activeButtons = ArrayList<MaterialButton>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+        vibrationUtils = VibrationUtils(this)
 
         initActiveButtons()
         highlightActiveButtons(this)
@@ -108,22 +112,24 @@ class GameActivity : AppCompatActivity() {
                 when (gameViewModel.getGameLifecycle(buttonValue)) {
 
                     GameLifecycle.CORRECT_VALUE -> {
-                        AnimationUtils.viewColorAnimation1(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 2 * AnimationUtils.DURATION)
+                        vibrationUtils.correctValueVibration()
+                        AnimationUtils.viewThreeColorAnimation(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 2 * AnimationUtils.DURATION)
                         AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
                         button.text = buttonValue
                         button.isClickable = false
                     }
 
                     GameLifecycle.INCORRECT_VALUE -> {
-                        AnimationUtils.viewColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.DURATION, 1)
+                        vibrationUtils.inCorrectValueVibration()
+                        AnimationUtils.viewTwoColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.DURATION, 1)
                         AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, AnimationUtils.DURATION)
                         AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.DURATION)
                         AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
                     }
 
                     GameLifecycle.NEXT_LEVEL -> {
-
-                        AnimationUtils.viewColorAnimation1(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 2 * AnimationUtils.DURATION)
+                        vibrationUtils.correctValueVibration()
+                        AnimationUtils.viewThreeColorAnimation(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 2 * AnimationUtils.DURATION)
                         AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
                         button.text = buttonValue
                         button.isClickable = false
@@ -140,6 +146,11 @@ class GameActivity : AppCompatActivity() {
                     }
 
                     GameLifecycle.WIN -> {
+                        vibrationUtils.correctValueVibration()
+                        AnimationUtils.viewThreeColorAnimation(this, button, R.color.accent_color, R.color.green, R.color.dark_button_color, 2 * AnimationUtils.DURATION)
+                        AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
+                        button.text = buttonValue
+                        button.isClickable = false
                         val intent = Intent(this, WinActivity::class.java)
                         Timer(false).schedule(object : TimerTask() {
                             override fun run() {
@@ -149,7 +160,7 @@ class GameActivity : AppCompatActivity() {
                     }
 
                     GameLifecycle.GAME_OVER -> {
-                        AnimationUtils.viewColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.DURATION, 1)
+                        AnimationUtils.viewTwoColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.DURATION, 1)
                         AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, AnimationUtils.DURATION)
                         AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.DURATION)
                         AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)

@@ -1,8 +1,6 @@
 package com.saber.green.memomania.utils
 
 import android.animation.*
-import android.animation.ValueAnimator.AnimatorUpdateListener
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -42,7 +40,7 @@ class AnimationUtils {
         }
 
 
-        fun viewColorAnimation(appCompatActivity: AppCompatActivity, view: View, colorFrom: Int, colorTo: Int, animationDuration : Long, repeatCount : Int = 0) {
+        fun viewTwoColorAnimation(appCompatActivity: AppCompatActivity, view: View, colorFrom: Int, colorTo: Int, animationDuration : Long, repeatCount : Int = 0) {
             val colorFromValue: Int = ResourcesCompat.getColor(appCompatActivity.resources, colorFrom, null)
             val colorToValue: Int = ResourcesCompat.getColor(appCompatActivity.resources, colorTo, null)
             val animator : ValueAnimator = ValueAnimator.ofObject(ArgbEvaluator(), colorFromValue, colorToValue)
@@ -56,14 +54,14 @@ class AnimationUtils {
         }
 
 
-        fun viewColorAnimation1(appCompatActivity: AppCompatActivity, view: View, colorFrom: Int, colorTo: Int,color3: Int, animationDuration : Long, repeatCount : Int = 0) {
+        fun viewThreeColorAnimation(appCompatActivity: AppCompatActivity, view: View, colorFrom: Int, colorTo: Int, color3: Int, animationDuration : Long, repeatCount : Int = 0) {
             val colorFromValue: Int = ResourcesCompat.getColor(appCompatActivity.resources, colorFrom, null)
             val colorToValue: Int = ResourcesCompat.getColor(appCompatActivity.resources, colorTo, null)
             val colorValue3: Int = ResourcesCompat.getColor(appCompatActivity.resources, color3, null)
             val animator : ValueAnimator = ValueAnimator.ofObject(ArgbEvaluator(), colorFromValue, colorToValue, colorValue3)
-            animator.addUpdateListener(AnimatorUpdateListener { animator ->
+            animator.addUpdateListener { animator ->
                 view.setBackgroundColor((animator.animatedValue as Int))
-            })
+            }
             animator.duration = animationDuration
             animator.repeatCount = repeatCount
             animator.repeatMode = ObjectAnimator.REVERSE
