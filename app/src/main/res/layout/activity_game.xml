@@ -24,7 +24,7 @@
             android:id="@+id/level_card"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:background="@drawable/shape_level"
+            android:background="@drawable/gradient"
             app:layout_constraintEnd_toStartOf="@+id/life_card"
             android:layout_marginEnd="32dp"
             app:layout_constraintStart_toStartOf="parent"

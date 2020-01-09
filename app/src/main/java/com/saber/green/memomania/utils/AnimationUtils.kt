@@ -12,7 +12,8 @@ class AnimationUtils {
 
     companion object{
 
-        val DURATION : Long = 500
+        val DURATION : Long = 300
+        val INCORRECT_DURATION : Long = 500
 
         fun scaleAnimation(view: View, scaleSize: Float, animationDuration: Long) {
             val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, scaleSize)

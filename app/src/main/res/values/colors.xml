@@ -12,6 +12,7 @@
     <color name="dark_secondary_color">#45535F</color>
     <color name="dark_button_color">#637484</color>
     <color name="accent_color">#47BFEF</color>
+    <color name="accent_color_2">#6DF2C0</color>
 
 
 </resources>

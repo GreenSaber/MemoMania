@@ -121,10 +121,10 @@ class GameActivity : AppCompatActivity() {
 
                     GameLifecycle.INCORRECT_VALUE -> {
                         vibrationUtils.inCorrectValueVibration()
-                        AnimationUtils.viewTwoColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.DURATION, 1)
-                        AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, AnimationUtils.DURATION)
-                        AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.DURATION)
-                        AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
+                        AnimationUtils.viewTwoColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.INCORRECT_DURATION, 1)
+                        AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, AnimationUtils.INCORRECT_DURATION)
+                        AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.INCORRECT_DURATION)
+                        AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.INCORRECT_DURATION)
                     }
 
                     GameLifecycle.NEXT_LEVEL -> {
@@ -160,10 +160,10 @@ class GameActivity : AppCompatActivity() {
                     }
 
                     GameLifecycle.GAME_OVER -> {
-                        AnimationUtils.viewTwoColorAnimation(this, button, R.color.accent_color, R.color.red, AnimationUtils.DURATION, 1)
-                        AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, AnimationUtils.DURATION)
-                        AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.DURATION)
-                        AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.DURATION)
+                        AnimationUtils.viewTwoColorAnimation(this, button, R.color.accent_color, R.color.red, 2 * AnimationUtils.DURATION, 1)
+                        AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, 2 * AnimationUtils.DURATION)
+                        AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.INCORRECT_DURATION)
+                        AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.INCORRECT_DURATION)
 
                         val intent = Intent(this, GameOverActivity::class.java)
                         Timer(false).schedule(object : TimerTask() {
@@ -173,7 +173,7 @@ class GameActivity : AppCompatActivity() {
                                     overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
                                 }
                             }
-                        }, AnimationUtils.DURATION)
+                        }, AnimationUtils.INCORRECT_DURATION)
                     }
                 }
             }

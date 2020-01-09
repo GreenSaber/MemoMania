@@ -49,13 +49,28 @@
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/accent_color"
         android:text="HOME"
-        app:icon="@drawable/ic_plus"
+        app:icon="@drawable/ic_home"
         app:iconGravity="start"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/win_text">
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/win_restart_button"
+        style="@style/menuButton"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/accent_color"
+        android:text="RESTART"
+        app:icon="@drawable/ic_refresh"
+        app:iconGravity="start"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/win_home_button">
     </com.google.android.material.button.MaterialButton>
 
 
