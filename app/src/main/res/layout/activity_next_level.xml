@@ -21,8 +21,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/life_card_next_menu"
-            android:layout_width="104dp"
-            android:layout_height="80dp"
+            android:layout_width="80dp"
+            android:layout_height="64dp"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="32dp"
             android:background="@drawable/shape_level"
@@ -30,8 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.807"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/heart_icon_next_menu"
@@ -56,28 +55,29 @@
                 android:text="3"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/heart_icon_next_menu"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.38" />
+                app:layout_constraintVertical_bias="0.3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/next_level_motivation_text"
-            android:layout_width="282dp"
-            android:layout_height="115dp"
+            android:layout_height="120dp"
+            android:layout_width="wrap_content"
             android:layout_marginTop="160dp"
             android:fontFamily="@font/raleway_bold"
             android:gravity="center"
             android:text="Congratulations!"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="36sp"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></TextView>
+            app:layout_constraintTop_toTopOf="parent">
+        </TextView>
 
         <TextView
             android:id="@+id/level_statistics"
@@ -89,7 +89,7 @@
             android:text="Next level is:"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="36sp"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
             android:text="5"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="48sp"
+            android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +122,6 @@
             android:textColor="@color/white"
             app:icon="@drawable/ic_ready"
             app:iconGravity="start"
-            app:iconPadding="-38dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +137,6 @@
             android:textColor="@color/white"
             app:icon="@drawable/ic_plus"
             app:iconGravity="start"
-            app:iconPadding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

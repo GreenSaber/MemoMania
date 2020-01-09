@@ -10,52 +10,66 @@
     android:paddingEnd="16dp"
     tools:context=".ui.MenuActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_grid"
+        android:backgroundTint="@color/dark_secondary_color"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/play_button"
+            style="@style/menuButton"
+            android:text="PLAY"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/accent_color"
+            app:icon="@drawable/ic_play"
+            app:iconGravity="start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rate_button"
+            style="@style/menuButton"
+            android:layout_marginTop="32dp"
+            android:text="RATE"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/accent_color"
+            app:icon="@drawable/ic_star"
+            app:iconGravity="start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/play_button">
+        </com.google.android.material.button.MaterialButton>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
         android:fontFamily="@font/raleway_bold"
         android:text="Memo Maniac"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="36sp"
+        android:textSize="40sp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
     </TextView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/play_button"
-        style="@style/menuButton"
-        android:layout_marginTop="64dp"
-        android:text="PLAY"
-        app:icon="@drawable/ic_play"
-        app:iconGravity="start"
-        app:iconPadding="-38dp"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/accent_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title">
-    </com.google.android.material.button.MaterialButton>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/rate_button"
-        style="@style/menuButton"
-        android:layout_marginTop="32dp"
-        android:text="RATE"
-        app:icon="@drawable/ic_star"
-        app:iconGravity="start"
-        app:iconPadding="-3dp"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/accent_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/play_button">
-    </com.google.android.material.button.MaterialButton>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
