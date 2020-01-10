@@ -46,10 +46,11 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toTopOf="@+id/next_menu_list"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/life_card_next_menu"
             app:layout_constraintEnd_toStartOf="@+id/next_level_number"
             app:layout_constraintStart_toStartOf="parent">
+
         </TextView>
 
         <TextView
@@ -70,30 +71,14 @@
         </TextView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/next_menu_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_grid"
-        android:backgroundTint="@color/dark_secondary_color"
-        android:paddingStart="16dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/next_level_number"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/life_card_next_menu"
             android:layout_width="80dp"
             android:layout_height="64dp"
-            android:background="@drawable/shape_level"
-            app:layout_constraintEnd_toEndOf="@+id/ready_button"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/shape_grid"
+            android:backgroundTint="@color/accent_color"
+            app:layout_constraintBottom_toTopOf="@+id/next_menu_list"
+            app:layout_constraintEnd_toEndOf="@+id/next_menu_list">
 
             <ImageView
                 android:id="@+id/heart_icon_next_menu"
@@ -124,7 +109,26 @@
                 app:layout_constraintStart_toEndOf="@id/heart_icon_next_menu"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.3" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/next_menu_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_grid"
+        android:backgroundTint="@color/dark_secondary_color"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/next_level_number"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/ready_button"
@@ -132,19 +136,18 @@
             android:backgroundTint="@color/accent_color"
             android:text="READY"
             android:textColor="@color/white"
-            android:layout_marginTop="32dp"
             app:icon="@drawable/ic_ready"
             app:iconGravity="start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/life_card_next_menu">
+            app:layout_constraintTop_toTopOf="parent">
         </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/get_life_button"
             style="@style/menuButton"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/accent_color"
             android:text="GET A LIFE"
             android:textColor="@color/white"

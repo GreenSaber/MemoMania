@@ -65,7 +65,7 @@
             android:id="@+id/life_card"
             android:layout_width="80dp"
             android:layout_height="64dp"
-            android:background="@drawable/shape_level"
+            android:background="@drawable/shape_life"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
