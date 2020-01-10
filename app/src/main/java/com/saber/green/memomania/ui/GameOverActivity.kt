@@ -23,13 +23,13 @@ class GameOverActivity : AppCompatActivity() {
 
     fun initLevelObserver() {
         gameOverViewModel.getLevelCount().observe(this, Observer {
-            finished_level_number.text = gameOverViewModel.getLevelCount().value
+            level_statistics.text = "${level_statistics.text} ${gameOverViewModel.getLevelCount().value}"
         })
     }
 
     fun onHomeButtonPressed() {
         game_over_home_button.setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
+            val intent = Intent(this, MenuActivity::class.  java)
             startActivity(intent)
             overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
         }
