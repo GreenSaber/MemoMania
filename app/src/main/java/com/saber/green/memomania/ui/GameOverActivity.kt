@@ -19,6 +19,7 @@ class GameOverActivity : AppCompatActivity() {
         gameOverViewModel = ViewModelProviders.of(this).get(GameOverViewModel::class.java)
         initLevelObserver()
         onHomeButtonPressed()
+        onRestartButtonPressed()
     }
 
     fun initLevelObserver() {
@@ -30,6 +31,15 @@ class GameOverActivity : AppCompatActivity() {
     fun onHomeButtonPressed() {
         game_over_home_button.setOnClickListener {
             val intent = Intent(this, MenuActivity::class.  java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
+        }
+    }
+
+    fun onRestartButtonPressed() {
+        game_over_restart_button.setOnClickListener {
+            gameOverViewModel.resetGame()
+            val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
         }

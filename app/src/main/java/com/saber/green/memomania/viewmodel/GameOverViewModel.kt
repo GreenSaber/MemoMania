@@ -16,4 +16,7 @@ class GameOverViewModel(application: Application) : AndroidViewModel(application
 
     fun getLevelCount(): LiveData<String> = levelCount
 
+    fun resetGame() {
+        Game.resetGame()
+    }
 }

@@ -81,10 +81,24 @@
             app:icon="@drawable/ic_home"
             app:iconGravity="start"
             app:iconPadding="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+        </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/game_over_restart_button"
+            style="@style/menuButton"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/accent_color"
+            android:text="RESTART"
+            app:icon="@drawable/ic_refresh"
+            app:iconGravity="start"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/game_over_home_button">
         </com.google.android.material.button.MaterialButton>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
