@@ -53,7 +53,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             if (Game.getLifesCount() > 0) {
                 return GameLifecycle.INCORRECT_VALUE
             } else {
-                Game.resetGame()
                 return GameLifecycle.GAME_OVER
             }
         }
