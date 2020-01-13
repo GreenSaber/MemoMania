@@ -22,7 +22,7 @@ class NextLevelActivity : AppCompatActivity() {
         setContentView(R.layout.activity_next_level)
         nextLevelViewModel = ViewModelProviders.of(this).get(NextLevelViewModel::class.java)
         initMotivationText()
-        initLevelCountObservable()
+        initLevelCountObservable1()
         initLifeObserver()
         onReadyButtonClick()
         onGetLifeButtonClick()
@@ -32,9 +32,9 @@ class NextLevelActivity : AppCompatActivity() {
         next_level_motivation_text.text = MotivationTextUtils.getRandomText()
     }
 
-    fun initLevelCountObservable() {
+    fun initLevelCountObservable1() {
         nextLevelViewModel.getLevelCount().observe(this, Observer {
-            next_level_number.text = nextLevelViewModel.getLevelCount().value
+            next_level_number.text = "${next_level_number.text} ${nextLevelViewModel.getLevelCount().value}"
         })
     }
 
