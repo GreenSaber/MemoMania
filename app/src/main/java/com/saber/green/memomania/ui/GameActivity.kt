@@ -160,6 +160,7 @@ class GameActivity : AppCompatActivity() {
                     }
 
                     GameLifecycle.GAME_OVER -> {
+                        vibrationUtils.inCorrectValueVibration()
                         AnimationUtils.viewTwoColorAnimation(this, button, R.color.accent_color, R.color.red, 2 * AnimationUtils.DURATION, 1)
                         AnimationUtils.layoutColorAnimation(this, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, 2 * AnimationUtils.DURATION)
                         AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.INCORRECT_DURATION)

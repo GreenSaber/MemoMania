@@ -34,7 +34,9 @@ class NextLevelActivity : AppCompatActivity() {
 
     fun initLevelCountObservable1() {
         nextLevelViewModel.getLevelCount().observe(this, Observer {
-            next_level_number.text = "${next_level_number.text} ${nextLevelViewModel.getLevelCount().value}"
+            val value = nextLevelViewModel.getLevelCount().value.toString()
+            val resultText = "${resources.getString(R.string.next_level_is)} $value"
+            next_level_number.text = resultText
         })
     }
 

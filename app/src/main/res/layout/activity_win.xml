@@ -12,31 +12,30 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/win_list"
-        android:layout_width="wrap_content"
+        android:layout_width="224dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/gradient"
         android:padding="@dimen/default_size"
-        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/win_menu_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/congratulations_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/raleway_bold"
-        android:gravity="center"
-        android:text="Congratulations!"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="28sp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/win_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </TextView>
-
+        <TextView
+            android:id="@+id/congratulations_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/raleway_bold"
+            android:gravity="center"
+            android:text="@string/congratulations"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/subtitle_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/win_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+        </TextView>
 
         <TextView
             android:id="@+id/win_text"
@@ -44,15 +43,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_extrabold"
             android:gravity="center"
-            android:text="You win"
+            android:text="@string/you_win"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="40sp"
+            android:textSize="@dimen/title_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
         </TextView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -69,35 +67,33 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.6">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/win_home_button"
-        style="@style/menuButton"
-        android:backgroundTint="@color/accent_color"
-        android:text="HOME"
-        app:icon="@drawable/ic_home"
-        app:iconGravity="start"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/win_home_button"
+            style="@style/menuButton"
+            android:backgroundTint="@color/accent_color"
+            android:text="@string/home"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_home"
+            app:iconGravity="start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </com.google.android.material.button.MaterialButton>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/win_restart_button"
-        style="@style/menuButton"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/accent_color"
-        android:text="RESTART"
-        app:icon="@drawable/ic_refresh"
-        app:iconGravity="start"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/win_home_button">
-    </com.google.android.material.button.MaterialButton>
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/win_restart_button"
+            style="@style/menuButton"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/accent_color"
+            android:text="@string/restart"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_refresh"
+            app:iconGravity="start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/win_home_button">
+        </com.google.android.material.button.MaterialButton>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

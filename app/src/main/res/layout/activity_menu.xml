@@ -19,15 +19,15 @@
         android:padding="@dimen/default_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6">
+        app:layout_constraintVertical_bias="0.65">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/play_button"
             style="@style/menuButton"
-            android:text="PLAY"
+            android:text="@string/play"
             android:textColor="@color/white"
             app:backgroundTint="@color/accent_color"
             app:icon="@drawable/ic_play"
@@ -42,7 +42,7 @@
             android:id="@+id/rate_button"
             style="@style/menuButton"
             android:layout_marginTop="16dp"
-            android:text="RATE"
+            android:text="@string/rate"
             android:textColor="@color/white"
             app:backgroundTint="@color/accent_color"
             app:icon="@drawable/ic_star"
@@ -52,26 +52,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/play_button">
         </com.google.android.material.button.MaterialButton>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tile_card"
-        android:layout_width="wrap_content"
+        android:layout_width="224dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/gradient"
         android:padding="@dimen/default_size"
-        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/menu_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="192dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_bold"
-            android:text="12 Tiles"
+            android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="40sp"

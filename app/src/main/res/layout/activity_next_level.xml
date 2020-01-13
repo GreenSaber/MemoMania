@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewmodel"
             type="com.saber.green.memomania.viewmodel.NextLevelViewModel" />
     </data>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,10 +18,9 @@
         android:paddingEnd="16dp"
         tools:context=".ui.MenuActivity">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/next_level_menu_text"
-            android:layout_width="240dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:background="@drawable/shape_grid"
@@ -82,15 +79,15 @@
                 android:id="@+id/next_level_motivation_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/raleway_bold"
                 android:gravity="center"
-                android:text="You're doing beautifully!"
+                android:text="@string/nothing_can_stop_you"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="28sp"
+                android:textSize="@dimen/subtitle_text_size"
                 app:layout_constraintBottom_toTopOf="@+id/next_level_card"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -104,7 +101,7 @@
                 android:padding="@dimen/default_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.238"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
@@ -112,13 +109,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/raleway_bold"
-                    android:text="Next level is: "
+                    android:text="@string/next_level_is"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="28sp"
+                    android:textSize="@dimen/title_text_size"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.504"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
                 </TextView>
@@ -137,16 +133,16 @@
             android:paddingBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.7">
+            app:layout_constraintVertical_bias="0.65">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/ready_button"
                 style="@style/menuButton"
                 android:backgroundTint="@color/accent_color"
-                android:text="READY"
+                android:text="@string/ready"
                 android:textColor="@color/white"
                 app:icon="@drawable/ic_ready"
                 app:iconGravity="start"
@@ -161,7 +157,7 @@
                 style="@style/menuButton"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/accent_color"
-                android:text="GET A LIFE"
+                android:text="@string/get_life"
                 android:textColor="@color/white"
                 app:icon="@drawable/ic_plus"
                 app:iconGravity="start"

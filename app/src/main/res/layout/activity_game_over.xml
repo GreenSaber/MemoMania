@@ -12,51 +12,60 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/win_list"
-        android:layout_width="292dp"
-        android:layout_height="183dp"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/gradient_fail"
-        android:padding="@dimen/default_size"
+        android:background="@drawable/shape_grid"
+        android:backgroundTint="@color/dark_secondary_color"
         app:layout_constraintBottom_toTopOf="@+id/win_menu_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/game_over_text"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/next_level_card"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/raleway_bold"
-            android:gravity="center"
-            android:text="Game over"
-            android:layout_marginTop="16dp"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="40sp"
+            android:background="@drawable/gradient_fail"
+            android:padding="@dimen/default_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/game_over_level_text">
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
 
-        </TextView>
+            <TextView
+                android:id="@+id/game_over_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_bold"
+                android:gravity="center"
+                android:text="@string/game_over"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+            </TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/game_over_level_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:fontFamily="@font/raleway_bold"
             android:gravity="center"
-            android:text="You finished on level :"
+            android:text="@string/you_finished_on_level"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="28sp"
+            android:textSize="@dimen/subtitle_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/next_level_card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
         </TextView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/win_menu_list"
@@ -70,13 +79,13 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637">
+        app:layout_constraintVertical_bias="0.65">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/game_over_home_button"
             style="@style/menuButton"
             android:backgroundTint="@color/accent_color"
-            android:text="HOME"
+            android:text="@string/home"
             android:textColor="@color/white"
             app:icon="@drawable/ic_home"
             app:iconGravity="start"
@@ -91,16 +100,14 @@
             style="@style/menuButton"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/accent_color"
-            android:text="RESTART"
+            android:text="@string/restart"
+            android:textColor="@color/white"
             app:icon="@drawable/ic_refresh"
             app:iconGravity="start"
-            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/game_over_home_button">
         </com.google.android.material.button.MaterialButton>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
