@@ -24,7 +24,7 @@ class GameOverActivity : AppCompatActivity() {
 
     fun initLevelObserver() {
         gameOverViewModel.getLevelCount().observe(this, Observer {
-            level_statistics.text = "${level_statistics.text} ${gameOverViewModel.getLevelCount().value}"
+            game_over_level_text.text = "${game_over_level_text.text} ${gameOverViewModel.getLevelCount().value}"
         })
     }
 
