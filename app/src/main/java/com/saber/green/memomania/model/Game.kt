@@ -29,6 +29,10 @@ class Game {
             return GameDataProvider.getInstance()?.getActiveTilesForLevel()?.get(levelNumber-1)
         }
 
+        fun getShowTiming(): Long? {
+            return GameDataProvider.getInstance()?.getShowTimingValueForLevel()?.get(levelNumber-1)
+        }
+
         fun refreshData() {
             GameDataProvider.getInstance()?.refreshData()
         }

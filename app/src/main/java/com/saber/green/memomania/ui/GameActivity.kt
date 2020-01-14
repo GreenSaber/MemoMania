@@ -23,6 +23,7 @@ import kotlin.collections.ArrayList
 class GameActivity : AppCompatActivity() {
 
     private val TAG = "GameActivity"
+    private val INITIAL_SHOW_DELAY : Long = 2000
     private lateinit var gameViewModel: GameViewModel
     private lateinit var vibrationUtils: VibrationUtils
 
@@ -88,7 +89,7 @@ class GameActivity : AppCompatActivity() {
                     activeButtons.forEach { it.isEnabled = false }
                 }
             }
-        }, 2000)
+        }, INITIAL_SHOW_DELAY)
     }
 
     fun hideValueOfActiveButtons(context: Context) {
@@ -100,7 +101,7 @@ class GameActivity : AppCompatActivity() {
                     activeButtons.forEach { it.isEnabled = true }
                 }
             }
-        }, 5500)
+        }, INITIAL_SHOW_DELAY + gameViewModel.getShowTiming())
     }
 
     fun onActiveButtonClick() {

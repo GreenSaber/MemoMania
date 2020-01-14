@@ -18,14 +18,21 @@ class GameDataProvider {
     }
 
     private var tilesArrayForEachLevel: ArrayList<ArrayList<Tile>>? = null
+    private var showTimingForEachLevel: ArrayList<Long>? = null
 
     init {
         tilesArrayForEachLevel = getTilesArrayForEachLevel()
+        showTimingForEachLevel = getShowTimingValueForEachLevel()
     }
 
     @Synchronized
     fun getActiveTilesForLevel(): ArrayList<ArrayList<Tile>>? {
         return tilesArrayForEachLevel
+    }
+
+    @Synchronized
+    fun getShowTimingValueForLevel(): ArrayList<Long>? {
+        return showTimingForEachLevel
     }
 
     @Synchronized
@@ -53,6 +60,28 @@ class GameDataProvider {
             )
         }
         return tilesArrayForEachLevel
+    }
+
+    private fun getShowTimingValueForEachLevel() : ArrayList<Long>{
+        val showTimingForEachLevel = ArrayList<Long>()
+        for (i in 1..10) {
+            showTimingForEachLevel.add(
+                when (i) {
+                    1 -> 2500
+                    2 -> 3000
+                    3 -> 3500
+                    4 -> 4000
+                    5 -> 4500
+                    6 -> 5000
+                    7 -> 5500
+                    8 -> 6000
+                    9 -> 6500
+                    10 -> 7000
+                    else -> 0
+                }
+            )
+        }
+        return showTimingForEachLevel
     }
 
     private fun getUniqueTilesArray(arraySize: Int, valuesMaxCount: Int, numbersMaxCount: Int = 12): ArrayList<Tile> {
