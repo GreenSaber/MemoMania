@@ -1,31 +1,20 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/accent_color</item>
         <item name="colorPrimaryDark">@color/accent_color</item>
         <item name="colorAccent">@color/accent_color</item>
     </style>
 
-<!--    <style name="AppTheme.NoActionBar">-->
-<!--        <item name="windowActionBar">false</item>-->
-<!--        <item name="windowNoTitle">true</item>-->
-<!--    </style>-->
-
-<!--    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />-->
-
-<!--    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />-->
-
     <style name="gridButton">
-        <item name="android:layout_width">96dp</item>
-        <item name="android:layout_height">96dp</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetRight">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="cornerRadius">8dp</item>
-        <item name="android:textSize">48sp</item>
+        <item name="android:textSize">36sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="backgroundTint">@color/grid_button_background_selector</item>
         <item name="android:layout_margin">4dp</item>
@@ -33,8 +22,8 @@
     </style>
 
     <style name="homeRefreshButton">
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetRight">0dp</item>
@@ -44,14 +33,14 @@
 
     <style name="menuButton">
         <item name="android:layout_width">192dp</item>
-        <item name="android:layout_height">72dp</item>
+        <item name="android:layout_height">64dp</item>
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetRight">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="cornerRadius">16dp</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">@font/raleway_bold</item>
 
     </style>

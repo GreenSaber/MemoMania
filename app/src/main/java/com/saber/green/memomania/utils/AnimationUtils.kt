@@ -1,8 +1,6 @@
 package com.saber.green.memomania.utils
 
 import android.animation.*
-import android.animation.ValueAnimator.AnimatorUpdateListener
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +12,8 @@ class AnimationUtils {
 
     companion object{
 
-        val DURATION : Long = 500
+        val DURATION : Long = 300
+        val INCORRECT_DURATION : Long = 500
 
         fun scaleAnimation(view: View, scaleSize: Float, animationDuration: Long) {
             val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, scaleSize)
@@ -42,13 +41,13 @@ class AnimationUtils {
         }
 
 
-        fun viewColorAnimation(appCompatActivity: AppCompatActivity, view: View, colorFrom: Int, colorTo: Int, animationDuration : Long, repeatCount : Int = 0) {
+        fun viewTwoColorAnimation(appCompatActivity: AppCompatActivity, view: View, colorFrom: Int, colorTo: Int, animationDuration : Long, repeatCount : Int = 0) {
             val colorFromValue: Int = ResourcesCompat.getColor(appCompatActivity.resources, colorFrom, null)
             val colorToValue: Int = ResourcesCompat.getColor(appCompatActivity.resources, colorTo, null)
             val animator : ValueAnimator = ValueAnimator.ofObject(ArgbEvaluator(), colorFromValue, colorToValue)
-            animator.addUpdateListener(AnimatorUpdateListener { animator ->
+            animator.addUpdateListener { animator ->
                 view.setBackgroundColor((animator.animatedValue as Int))
-            })
+            }
             animator.duration = animationDuration
             animator.repeatCount = repeatCount
             animator.repeatMode = ObjectAnimator.REVERSE
@@ -56,14 +55,14 @@ class AnimationUtils {
         }
 
 
-        fun viewColorAnimation1(appCompatActivity: AppCompatActivity, view: View, colorFrom: Int, colorTo: Int,color3: Int, animationDuration : Long, repeatCount : Int = 0) {
+        fun viewThreeColorAnimation(appCompatActivity: AppCompatActivity, view: View, colorFrom: Int, colorTo: Int, color3: Int, animationDuration : Long, repeatCount : Int = 0) {
             val colorFromValue: Int = ResourcesCompat.getColor(appCompatActivity.resources, colorFrom, null)
             val colorToValue: Int = ResourcesCompat.getColor(appCompatActivity.resources, colorTo, null)
             val colorValue3: Int = ResourcesCompat.getColor(appCompatActivity.resources, color3, null)
             val animator : ValueAnimator = ValueAnimator.ofObject(ArgbEvaluator(), colorFromValue, colorToValue, colorValue3)
-            animator.addUpdateListener(AnimatorUpdateListener { animator ->
+            animator.addUpdateListener { animator ->
                 view.setBackgroundColor((animator.animatedValue as Int))
-            })
+            }
             animator.duration = animationDuration
             animator.repeatCount = repeatCount
             animator.repeatMode = ObjectAnimator.REVERSE
@@ -75,7 +74,6 @@ class AnimationUtils {
                 override fun onAnimationStart(animation: Animator?) {
                     view.isEnabled = false
                 }
-
                 override fun onAnimationEnd(animation: Animator?) {
                     view.isEnabled = true
                 }
