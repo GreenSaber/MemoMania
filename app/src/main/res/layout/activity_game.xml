@@ -128,79 +128,16 @@
         </com.google.android.material.button.MaterialButton>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <GridLayout
-        android:id="@+id/grid_layout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/grid_layout_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_grid"
-        android:backgroundTint="@color/dark_secondary_color"
-        android:columnCount="3"
-        android:padding="4dp"
-        android:rowCount="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/info_panel">
+        app:layout_constraintTop_toBottomOf="@id/info_panel"
+        tools:context="com.codinginflow.newinstanceexample.MainActivity"
+        />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton1"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton2"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton3"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton4"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton5"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton6"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton7"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton8"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton9"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton10"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton11"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/gameTileButton12"
-            style="@style/gridButton">
-        </com.google.android.material.button.MaterialButton>
-    </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
