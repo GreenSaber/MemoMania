@@ -39,8 +39,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 val level = Game.getLevel() + 1
                 Game.setLevel(level)
                 levelCount.value = Game.getLevel().toString()
-                //TODO to change on 10 value below
-                if (Game.getLevel() < 10) {
+                if (Game.getLevel() < 11) {
                     return GameLifecycle.NEXT_LEVEL
                 } else {
                     Game.resetGame()
