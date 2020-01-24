@@ -2,7 +2,6 @@ package com.saber.green.memomania.ui
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,41 +16,31 @@ import com.saber.green.memomania.R
 import com.saber.green.memomania.model.GameLifecycle
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.utils.VibrationUtils
-import com.saber.green.memomania.viewmodel.GameFieldClassicViewModel
-import kotlinx.android.synthetic.main.activity_game.*
+import com.saber.green.memomania.viewmodel.GameViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class GameFieldClassicFragment : Fragment() {
 
-    companion object {
-        fun newInstance() =
-            GameFieldClassicFragment()
-    }
-
-    private lateinit var viewModel: GameFieldClassicViewModel
+    private lateinit var viewModel: GameViewModel
     private val TAG = "GameActivity"
     private val INITIAL_SHOW_DELAY : Long = 2000
     private lateinit var vibrationUtils: VibrationUtils
-    private lateinit var listener: GameFieldClassicFragmentListener
     private val activeButtons = ArrayList<MaterialButton>()
-
-    interface GameFieldClassicFragmentListener {
-        fun onIncorrect()
-    }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View = inflater.inflate(R.layout.game_field_classic_fragment, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_game_field_classic, container, false)
+        viewModel = ViewModelProviders.of(activity!!).get(GameViewModel::class.java)
+        vibrationUtils = VibrationUtils(activity as AppCompatActivity)
+
+
         return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(GameFieldClassicViewModel::class.java)
-        vibrationUtils = VibrationUtils(activity as AppCompatActivity)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initActiveButtons()
         highlightActiveButtons(activity!!)
         showValueOfActiveButtons(activity!!)
@@ -118,7 +107,6 @@ class GameFieldClassicFragment : Fragment() {
 //                        AnimationUtils.layoutColorAnimation(activity as AppCompatActivity, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, AnimationUtils.INCORRECT_DURATION)
 //                        AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.INCORRECT_DURATION)
 
-                        listener.onIncorrect()
                         AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.INCORRECT_DURATION)
                     }
 
@@ -157,8 +145,8 @@ class GameFieldClassicFragment : Fragment() {
                     GameLifecycle.GAME_OVER -> {
                         vibrationUtils.inCorrectValueVibration()
                         AnimationUtils.viewTwoColorAnimation(activity as AppCompatActivity, button, R.color.accent_color, R.color.red, 2 * AnimationUtils.DURATION, 1)
-                        AnimationUtils.layoutColorAnimation(activity as AppCompatActivity, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, 2 * AnimationUtils.DURATION)
-                        AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.INCORRECT_DURATION)
+//                        AnimationUtils.layoutColorAnimation(activity as AppCompatActivity, life_card.background as GradientDrawable, R.color.accent_color, R.color.red, 2 * AnimationUtils.DURATION)
+//                        AnimationUtils.scaleAnimation(heart_icon, 1.5f, AnimationUtils.INCORRECT_DURATION)
                         AnimationUtils.scaleAnimation(button, 1.07f, AnimationUtils.INCORRECT_DURATION)
 
                         val intent = Intent(activity, GameOverActivity::class.java)
@@ -173,15 +161,6 @@ class GameFieldClassicFragment : Fragment() {
                     }
                 }
             }
-        }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        listener = if (context is GameFieldClassicFragmentListener) {
-            context
-        } else {
-            throw RuntimeException(context.toString() + " must implement GameFieldClassicFragmentListener")
         }
     }
 

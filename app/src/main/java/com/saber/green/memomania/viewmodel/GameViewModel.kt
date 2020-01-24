@@ -22,6 +22,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getLifeCount(): LiveData<String> = lifeCount
 
+    fun setLifeCount(value : String) { lifeCount.value = value }
+
     fun getLevelCount(): LiveData<String> = levelCount
 
     fun getActiveTiles(): ArrayList<Tile> {
