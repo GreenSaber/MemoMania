@@ -7,7 +7,15 @@ class Game {
     companion object {
         private var lifesCount: Int = 5
         private var levelNumber: Int = 1
+        private var difficulty: GameDifficulty = GameDifficulty.CLASSIC
 
+        fun getDifficulty(): GameDifficulty {
+            return difficulty
+        }
+
+        fun setDifficulty(difficulty : GameDifficulty){
+            this.difficulty = difficulty
+        }
 
         fun getLevel(): Int {
             return levelNumber

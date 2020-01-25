@@ -12,15 +12,15 @@ import androidx.lifecycle.ViewModelProviders
 import com.saber.green.memomania.R
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.viewmodel.GameViewModel
-import kotlinx.android.synthetic.main.fragment_game_statistics.*
+import kotlinx.android.synthetic.main.fragment_game_info_panel.*
 import java.util.*
 
-class GameStatisticsFragment : Fragment() {
+class InfoPanelFragment : Fragment() {
 
     private lateinit var viewModel: GameViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view : View =  inflater.inflate(R.layout.fragment_game_statistics, container, false)
+        val view : View =  inflater.inflate(R.layout.fragment_game_info_panel, container, false)
         viewModel = ViewModelProviders.of(activity!!).get(GameViewModel::class.java)
         return view
     }
@@ -29,29 +29,34 @@ class GameStatisticsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initLevelObserver()
         initLifeObserver()
+        initWrongAnswersObserver()
         onHomeButtonClick()
         onRestartButtonClick()
     }
 
-
     fun initLevelObserver() {
-        viewModel.getLevelCount().observe(activity!!, Observer {
-            level_number.text = viewModel.getLevelCount().value
+        viewModel.getLevels().observe(activity!!, Observer {
+            level_number.text = viewModel.getLevels().value
         })
     }
 
     fun initLifeObserver() {
-        viewModel.getLifeCount().observe(this, Observer {
+        viewModel.getLifes().observe(this, Observer {
             Timer(false).schedule(object : TimerTask() {
                 override fun run() {
                     activity?.runOnUiThread {
-                        life_number.text = viewModel.getLifeCount().value
+                        life_number.text = it
                     }
                 }
             }, AnimationUtils.DURATION)
         })
     }
 
+    fun initWrongAnswersObserver() {
+        viewModel.getWrongAnswers().observe(this, Observer {
+            AnimationUtils.incorrectValueInfoPanelAnimation(activity!!, life_card, heart_icon)
+        })
+    }
 
     fun onHomeButtonClick() {
         home_button.setOnClickListener {

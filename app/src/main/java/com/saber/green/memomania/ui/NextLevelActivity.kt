@@ -1,7 +1,6 @@
 package com.saber.green.memomania.ui
 
 import android.content.Intent
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -82,8 +81,7 @@ class NextLevelActivity : AppCompatActivity() {
 
     fun onGetLifeButtonClick(){
         get_life_button.setOnClickListener {
-            AnimationUtils.layoutColorAnimation(this, life_card_next_menu.background as GradientDrawable, R.color.accent_color, R.color.green, AnimationUtils.DURATION)
-            AnimationUtils.scaleAnimation(heart_icon_next_menu, 1.5f, AnimationUtils.DURATION)
+            AnimationUtils.getLifeAnimationInfoPanelAnimation(this, life_card_next_menu, heart_icon_next_menu)
             nextLevelViewModel.addLife()
             it.isClickable = false
             it.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_button_color))

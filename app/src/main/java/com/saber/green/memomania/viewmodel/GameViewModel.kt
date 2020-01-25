@@ -12,19 +12,20 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     private var rightAnswersCount: Int = 0
     private var wrongAnswersCount: Int = 0
-    private val lifeCount = MutableLiveData<String>()
-    private val levelCount = MutableLiveData<String>()
+    private val lifes = MutableLiveData<String>()
+    private val levels = MutableLiveData<String>()
+    private val wrongAnswers = MutableLiveData<Int>()
 
     init {
-        lifeCount.value = Game.getLifesCount().toString()
-        levelCount.value = Game.getLevel().toString()
+        lifes.value = Game.getLifesCount().toString()
+        levels.value = Game.getLevel().toString()
     }
 
-    fun getLifeCount(): LiveData<String> = lifeCount
+    fun getLifes(): LiveData<String> = lifes
 
-    fun setLifeCount(value : String) { lifeCount.value = value }
+    fun getLevels(): LiveData<String> = levels
 
-    fun getLevelCount(): LiveData<String> = levelCount
+    fun getWrongAnswers(): LiveData<Int> = wrongAnswers
 
     fun getActiveTiles(): ArrayList<Tile> {
         return Game.getActiveTiles()!!
@@ -40,7 +41,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             if (rightAnswersCount == getActiveTiles().size) {
                 val level = Game.getLevel() + 1
                 Game.setLevel(level)
-                levelCount.value = Game.getLevel().toString()
+                levels.value = Game.getLevel().toString()
                 if (Game.getLevel() < 11) {
                     return GameLifecycle.NEXT_LEVEL
                 } else {
@@ -54,7 +55,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             wrongAnswersCount++
             val currentLifesCount = Game.getLifesCount() - 1
             Game.setLifesCount(currentLifesCount)
-            lifeCount.value = Game.getLifesCount().toString()
+            wrongAnswers.value = wrongAnswersCount
+            lifes.value = Game.getLifesCount().toString()
             if (Game.getLifesCount() > 0) {
                 return GameLifecycle.INCORRECT_VALUE
             } else {
