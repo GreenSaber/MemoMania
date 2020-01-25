@@ -54,7 +54,7 @@ class InfoPanelFragment : Fragment() {
     }
 
     fun initWrongAnswersObserver() {
-        viewModel.getWrongAnswers().observe(this, Observer {
+        viewModel.getWrongAnswers().observe(viewLifecycleOwner, Observer {
             AnimationUtils.incorrectValueInfoPanelAnimation(activity!!, life_card, heart_icon)
         })
     }
@@ -72,7 +72,7 @@ class InfoPanelFragment : Fragment() {
             viewModel.resetGame()
             val intent = Intent(activity, GameActivity::class.java)
             startActivity(intent)
-            activity?.overridePendingTransition(R.anim.anim_slide_in_top, R.anim.anim_slide_out_top)
+            activity?.overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
         }
     }
 
