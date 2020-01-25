@@ -29,12 +29,26 @@ class Game {
             return lifesCount
         }
 
+        fun getLevelsCount(): Int {
+            return when (difficulty) {
+                GameDifficulty.EASY -> {
+                    GameDataProvider.getInstance()!!.LEVELS_COUNT_EASY
+                }
+                GameDifficulty.CLASSIC -> {
+                    GameDataProvider.getInstance()!!.LEVELS_COUNT_CLASSIC
+                }
+                GameDifficulty.HARD -> {
+                    GameDataProvider.getInstance()!!.LEVELS_COUNT_HARD
+                }
+            }
+        }
+
         fun setLifesCount(count: Int) {
             lifesCount = count
         }
 
         fun getActiveTiles(): ArrayList<Tile>? {
-            return GameDataProvider.getInstance()?.getActiveTilesForLevel()?.get(levelNumber-1)
+            return GameDataProvider.getInstance()?.getActiveTilesForLevel(difficulty)?.get(levelNumber-1)
         }
 
         fun getShowTiming(): Long? {

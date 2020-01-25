@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.saber.green.memomania.R
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.viewmodel.GameViewModel
@@ -21,7 +21,7 @@ class InfoPanelFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view : View =  inflater.inflate(R.layout.fragment_game_info_panel, container, false)
-        viewModel = ViewModelProviders.of(activity!!).get(GameViewModel::class.java)
+        viewModel =  ViewModelProvider(activity!!).get(GameViewModel::class.java)
         return view
     }
 

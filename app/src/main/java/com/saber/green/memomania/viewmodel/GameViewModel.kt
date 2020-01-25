@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.saber.green.memomania.model.Game
+import com.saber.green.memomania.model.GameDifficulty
 import com.saber.green.memomania.model.GameLifecycle
 import com.saber.green.memomania.model.Tile
 
@@ -35,6 +36,10 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         return Game.getShowTiming()!!
     }
 
+    fun getDifficulty(): GameDifficulty {
+        return Game.getDifficulty()
+    }
+
     fun getGameLifecycle(value: String): GameLifecycle {
         if (getSortedTiles()[rightAnswersCount].getValue() == value.toInt()) {
             rightAnswersCount++
@@ -42,7 +47,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 val level = Game.getLevel() + 1
                 Game.setLevel(level)
                 levels.value = Game.getLevel().toString()
-                if (Game.getLevel() < 11) {
+                if (Game.getLevel() <= Game.getLevelsCount()) {
                     return GameLifecycle.NEXT_LEVEL
                 } else {
                     Game.resetGame()

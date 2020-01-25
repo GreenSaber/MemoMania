@@ -39,7 +39,7 @@ class AnimationUtils {
             scaleAnimation(viewToScale, HEART_SCALE_SIZE, INCORRECT_DURATION)
         }
 
-        private fun scaleAnimation(view: View, scaleSize: Float, animationDuration: Long) {
+        fun scaleAnimation(view: View, scaleSize: Float, animationDuration: Long) {
             val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, scaleSize)
             val scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, scaleSize)
             val animator = ObjectAnimator.ofPropertyValuesHolder(view, scaleX, scaleY)
@@ -50,7 +50,7 @@ class AnimationUtils {
             animator.start()
         }
 
-        private fun layoutColorAnimation(appCompatActivity: AppCompatActivity, background : GradientDrawable, colorFrom: Int, colorTo: Int, animationDuration : Long) {
+        fun layoutColorAnimation(appCompatActivity: AppCompatActivity, background : GradientDrawable, colorFrom: Int, colorTo: Int, animationDuration : Long) {
             val colorFromValue: Int = ResourcesCompat.getColor(appCompatActivity.resources, colorFrom, null)
             val colorToValue: Int = ResourcesCompat.getColor(appCompatActivity.resources, colorTo, null)
             val animator: ValueAnimator = ValueAnimator.ofObject(ArgbEvaluator(), colorFromValue, colorToValue)

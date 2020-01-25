@@ -8,7 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.button.MaterialButton
 import com.saber.green.memomania.R
 import com.saber.green.memomania.model.GameLifecycle
@@ -30,7 +30,7 @@ open class BaseGameFieldFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(activity!!).get(GameViewModel::class.java)
+        viewModel = ViewModelProvider(activity!!).get(GameViewModel::class.java)
         vibrationUtils = VibrationUtils(activity as AppCompatActivity)
         initActiveButtons()
         highlightActiveButtons(activity!!)

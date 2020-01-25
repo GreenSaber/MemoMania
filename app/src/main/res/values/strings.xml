@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">12 Tiles</string>
+    <string name="app_name_easy">9 Tiles</string>
+    <string name="app_name_hard">16 Tiles</string>
+    <string name="easy">Easy</string>
+    <string name="classic">Classic</string>
+    <string name="hard">Hard</string>
     <string name="play">play</string>
     <string name="home">home</string>
     <string name="rate">rate</string>

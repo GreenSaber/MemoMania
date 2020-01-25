@@ -3,7 +3,7 @@ package com.saber.green.memomania.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.saber.green.memomania.R
 import com.saber.green.memomania.viewmodel.WinViewModel
 import kotlinx.android.synthetic.main.activity_win.*
@@ -15,7 +15,7 @@ class WinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_win)
-        winViewModel = ViewModelProviders.of(this).get(WinViewModel::class.java)
+        winViewModel =  ViewModelProvider(this).get(WinViewModel::class.java)
 
         onHomeButtonPressed()
         onRestartButtonPressed()
