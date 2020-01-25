@@ -1,4 +1,4 @@
-package com.saber.green.memomania.ui.gamefields
+package com.saber.green.memomania.ui.game
 
 import android.content.Context
 import android.content.Intent
@@ -130,7 +130,7 @@ open class BaseGameFieldFragment : Fragment(){
                     activity?.overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
                 }
             }
-        }, AnimationUtils.DURATION)
+        }, AnimationUtils.DURATION * 2)
     }
 
     private fun navigateToGameOverActivity(){

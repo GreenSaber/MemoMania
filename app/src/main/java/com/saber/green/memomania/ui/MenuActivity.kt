@@ -11,6 +11,7 @@ import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.saber.green.memomania.R
 import com.saber.green.memomania.model.GameDifficulty
+import com.saber.green.memomania.ui.game.GameActivity
 import com.saber.green.memomania.viewmodel.MenuViewModel
 import kotlinx.android.synthetic.main.activity_menu.*
 

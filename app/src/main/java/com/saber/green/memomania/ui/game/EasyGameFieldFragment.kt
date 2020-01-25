@@ -1,4 +1,4 @@
-package com.saber.green.memomania.ui.gamefields
+package com.saber.green.memomania.ui.game
 
 import android.os.Bundle
 import android.view.LayoutInflater

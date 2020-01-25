@@ -1,4 +1,4 @@
-package com.saber.green.memomania.ui
+package com.saber.green.memomania.ui.game
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,10 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.saber.green.memomania.R
 import com.saber.green.memomania.model.GameDifficulty
-import com.saber.green.memomania.ui.gamefields.BaseGameFieldFragment
-import com.saber.green.memomania.ui.gamefields.ClassicGameFieldFragment
-import com.saber.green.memomania.ui.gamefields.EasyGameFieldFragment
-import com.saber.green.memomania.ui.gamefields.HardGameFieldFragment
+import com.saber.green.memomania.ui.MenuActivity
 import com.saber.green.memomania.viewmodel.GameViewModel
 
 

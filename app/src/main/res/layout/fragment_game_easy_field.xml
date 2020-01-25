@@ -10,7 +10,7 @@
     android:columnCount="3"
     android:padding="4dp"
     android:rowCount="3"
-    tools:context=".ui.gamefields.ClassicGameFieldFragment">
+    tools:context=".ui.game.ClassicGameFieldFragment">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/gameTileButton1"

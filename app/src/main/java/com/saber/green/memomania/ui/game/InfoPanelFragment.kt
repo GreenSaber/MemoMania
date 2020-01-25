@@ -1,4 +1,4 @@
-package com.saber.green.memomania.ui
+package com.saber.green.memomania.ui.game
 
 
 import android.content.Intent
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.saber.green.memomania.R
+import com.saber.green.memomania.ui.MenuActivity
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.viewmodel.GameViewModel
 import kotlinx.android.synthetic.main.fragment_game_info_panel.*
@@ -41,7 +42,7 @@ class InfoPanelFragment : Fragment() {
     }
 
     fun initLifeObserver() {
-        viewModel.getLifes().observe(this, Observer {
+        viewModel.getLifes().observe(viewLifecycleOwner, Observer {
             Timer(false).schedule(object : TimerTask() {
                 override fun run() {
                     activity?.runOnUiThread {

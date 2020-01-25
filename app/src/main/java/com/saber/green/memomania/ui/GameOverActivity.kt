@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.saber.green.memomania.R
+import com.saber.green.memomania.ui.game.GameActivity
 import com.saber.green.memomania.viewmodel.GameOverViewModel
 import kotlinx.android.synthetic.main.activity_game_over.*
 

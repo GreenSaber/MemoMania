@@ -13,6 +13,7 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.saber.green.memomania.R
+import com.saber.green.memomania.ui.game.GameActivity
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.utils.MotivationTextUtils
 import com.saber.green.memomania.viewmodel.NextLevelViewModel

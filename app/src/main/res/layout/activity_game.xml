@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/dark_primary_color"
     android:orientation="vertical"
-    tools:context=".ui.GameActivity">
+    tools:context=".ui.game.GameActivity">
 
     <FrameLayout
         android:id="@+id/info_panel_container"

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.saber.green.memomania.R
+import com.saber.green.memomania.ui.game.GameActivity
 import com.saber.green.memomania.viewmodel.WinViewModel
 import kotlinx.android.synthetic.main.activity_win.*
 
