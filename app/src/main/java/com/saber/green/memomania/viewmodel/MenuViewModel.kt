@@ -10,17 +10,29 @@ import com.saber.green.memomania.model.GameDifficulty
 class MenuViewModel(application: Application) : AndroidViewModel(application) {
 
     private val difficulty = MutableLiveData<GameDifficulty>()
+    private val soundStatus = MutableLiveData<Boolean>()
 
     init {
         difficulty.value = Game.getDifficulty()
+        soundStatus.value = Game.getSoundStatus()
     }
 
     fun getDifficulty(): LiveData<GameDifficulty> {
         return difficulty
     }
 
-    private fun setDifficulty(gameDifficulty: GameDifficulty){
+    fun getSoundStatus(): LiveData<Boolean> {
+        return soundStatus
+    }
+
+    private fun setDifficulty(gameDifficulty: GameDifficulty) {
         difficulty.value = gameDifficulty
+    }
+
+    fun onSoundButtonClick() {
+        val statusToSet: Boolean = !Game.getSoundStatus()
+        Game.setSoundStatus(statusToSet)
+        soundStatus.value = statusToSet
     }
 
     fun onRightArrowButtonClick(): GameDifficulty {

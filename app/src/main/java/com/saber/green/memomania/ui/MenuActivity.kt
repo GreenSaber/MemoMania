@@ -2,7 +2,6 @@ package com.saber.green.memomania.ui
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.media.SoundPool
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,39 +12,24 @@ import com.daimajia.androidanimations.library.YoYo
 import com.saber.green.memomania.R
 import com.saber.green.memomania.model.GameDifficulty
 import com.saber.green.memomania.ui.game.GameActivity
-import com.saber.green.memomania.utils.SoundUtils
 import com.saber.green.memomania.viewmodel.MenuViewModel
 import kotlinx.android.synthetic.main.activity_menu.*
 
 class MenuActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MenuViewModel
-    private lateinit var soundUtils: SoundUtils
-
-    private lateinit var soundPool: SoundPool
-    private var sound : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
         viewModel = ViewModelProvider(this).get(MenuViewModel::class.java)
-
-//        val audioAttributes: AudioAttributes = AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()
-
-//        soundPool = SoundPool.Builder().setMaxStreams(50).setAudioAttributes(audioAttributes).build()
-
-
-        soundPool = SoundUtils().getSoundPool()
-//        sound = soundPool.load(this, R.raw.laser, 1)
-
-        sound = SoundUtils().getSound(this, soundPool)
-
         onPlayButtonClicked()
         onRateMeButtonClick()
         onRightArrowButtonClick()
         onLeftArrowButtonClick()
-        initDifficultyObserver()
         onSoundButtonClick()
+        initDifficultyObserver()
+        initSoundObserver()
     }
 
     fun onPlayButtonClicked() {
@@ -91,6 +75,24 @@ class MenuActivity : AppCompatActivity() {
         })
     }
 
+    fun initSoundObserver(){
+        viewModel.getSoundStatus().observe(this, Observer {
+            if (viewModel.getSoundStatus().value == true){
+                sound_button_main.text = resources.getString(R.string.sound_on)
+                sound_button_main.icon = resources.getDrawable(R.drawable.ic_sound_on, theme)
+            } else {
+                sound_button_main.text = resources.getString(R.string.sound_off)
+                sound_button_main.icon = resources.getDrawable(R.drawable.ic_sound_off, theme)
+            }
+        })
+    }
+
+    fun onSoundButtonClick(){
+        sound_button_main.setOnClickListener{
+            viewModel.onSoundButtonClick()
+        }
+    }
+
     fun onRightArrowButtonClick() {
         arrow_right.setOnClickListener {
             YoYo.with(Techniques.Landing).duration(300).playOn(game_title)
@@ -102,13 +104,6 @@ class MenuActivity : AppCompatActivity() {
         arrow_left.setOnClickListener {
             YoYo.with(Techniques.Landing).duration(300).playOn(game_title)
             viewModel.onLeftArrowButtonClick()
-        }
-    }
-
-    fun onSoundButtonClick(){
-        sound_button_main.setOnClickListener {
-//            soundPool.play(sound, 1F, 1F, 0, 0, 1F)
-            SoundUtils().playCorrectTileSound(soundPool, sound)
         }
     }
 

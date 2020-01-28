@@ -118,7 +118,7 @@
     </com.google.android.material.button.MaterialButton>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/sound_button_main"
+        android:id="@+id/sound_button_game"
         style="@style/homeRefreshButton"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"

@@ -31,7 +31,9 @@ class InfoPanelFragment : Fragment() {
         initLevelObserver()
         initLifeObserver()
         initWrongAnswersObserver()
+        initSoundObserver()
         onHomeButtonClick()
+        onSoundButtonClick()
         onRestartButtonClick()
     }
 
@@ -57,6 +59,22 @@ class InfoPanelFragment : Fragment() {
         viewModel.getWrongAnswers().observe(viewLifecycleOwner, Observer {
             AnimationUtils.incorrectValueInfoPanelAnimation(activity!!, life_card, heart_icon)
         })
+    }
+
+    fun initSoundObserver(){
+        viewModel.getSoundStatus().observe(viewLifecycleOwner, Observer {
+            if (viewModel.getSoundStatus().value == true){
+                sound_button_game.icon = resources.getDrawable(R.drawable.ic_sound_on, activity!!.theme)
+            } else {
+                sound_button_game.icon = resources.getDrawable(R.drawable.ic_sound_off, activity!!.theme)
+            }
+        })
+    }
+
+    fun onSoundButtonClick() {
+        sound_button_game.setOnClickListener {
+            viewModel.onSoundButtonClick()
+        }
     }
 
     fun onHomeButtonClick() {

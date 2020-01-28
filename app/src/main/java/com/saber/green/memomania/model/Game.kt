@@ -8,13 +8,22 @@ class Game {
         private var lifesCount: Int = 5
         private var levelNumber: Int = 1
         private var difficulty: GameDifficulty = GameDifficulty.CLASSIC
+        private var soundStatus: Boolean = false
 
         fun getDifficulty(): GameDifficulty {
             return difficulty
         }
 
-        fun setDifficulty(difficulty : GameDifficulty){
+        fun setDifficulty(difficulty: GameDifficulty) {
             this.difficulty = difficulty
+        }
+
+        fun getSoundStatus(): Boolean {
+            return soundStatus
+        }
+
+        fun setSoundStatus(status: Boolean) {
+            soundStatus = status
         }
 
         fun getLevel(): Int {
@@ -59,7 +68,7 @@ class Game {
             GameDataProvider.getInstance()?.refreshData()
         }
 
-        fun resetGame(){
+        fun resetGame() {
             GameDataProvider.getInstance()?.refreshData()
             lifesCount = 5
             levelNumber = 1

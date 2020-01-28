@@ -16,10 +16,12 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private val lifes = MutableLiveData<String>()
     private val levels = MutableLiveData<String>()
     private val wrongAnswers = MutableLiveData<Int>()
+    private val soundStatus = MutableLiveData<Boolean>()
 
     init {
         lifes.value = Game.getLifesCount().toString()
         levels.value = Game.getLevel().toString()
+        soundStatus.value = Game.getSoundStatus()
     }
 
     fun getLifes(): LiveData<String> = lifes
@@ -27,6 +29,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun getLevels(): LiveData<String> = levels
 
     fun getWrongAnswers(): LiveData<Int> = wrongAnswers
+
+    fun getSoundStatus(): LiveData<Boolean> = soundStatus
 
     fun getActiveTiles(): ArrayList<Tile> {
         return Game.getActiveTiles()!!
@@ -68,6 +72,12 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 return GameLifecycle.GAME_OVER
             }
         }
+    }
+
+    fun onSoundButtonClick() {
+        val statusToSet: Boolean = !Game.getSoundStatus()
+        Game.setSoundStatus(statusToSet)
+        soundStatus.value = statusToSet
     }
 
     fun resetGame(){
