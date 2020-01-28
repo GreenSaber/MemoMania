@@ -8,6 +8,8 @@
     <string name="play">play</string>
     <string name="home">home</string>
     <string name="rate">rate</string>
+    <string name="sound_on">sound: on</string>
+    <string name="sound_off">sound: off</string>
     <string name="ready">ready</string>
     <string name="level">level</string>
     <string name="restart">restart</string>

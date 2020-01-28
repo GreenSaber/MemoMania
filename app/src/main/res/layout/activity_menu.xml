@@ -111,7 +111,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/play_button"
-            style="@style/menuButton"
+            style="@style/menu_button"
             android:text="@string/play"
             android:textColor="@color/white"
             app:backgroundTint="@color/accent_color"
@@ -125,7 +125,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/rate_button"
-            style="@style/menuButton"
+            style="@style/menu_button"
             android:layout_marginTop="16dp"
             android:text="@string/rate"
             android:textColor="@color/white"
@@ -136,6 +136,20 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/play_button">
+        </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sound_button_main"
+            style="@style/menu_button"
+            android:layout_marginTop="16dp"
+            android:text="@string/sound_on"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/accent_color"
+            app:icon="@drawable/ic_sound_on"
+            app:iconGravity="start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rate_button">
         </com.google.android.material.button.MaterialButton>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

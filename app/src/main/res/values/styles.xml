@@ -37,8 +37,8 @@
     </style>
 
     <style name="homeRefreshButton">
-        <item name="android:layout_width">32dp</item>
-        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetRight">0dp</item>
@@ -46,7 +46,7 @@
         <item name="cornerRadius">8dp</item>
     </style>
 
-    <style name="menuButton">
+    <style name="menu_button">
         <item name="android:layout_width">192dp</item>
         <item name="android:layout_height">64dp</item>
         <item name="android:insetLeft">0dp</item>
