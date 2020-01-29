@@ -9,6 +9,7 @@ import com.saber.green.memomania.ui.game.GameActivity
 import com.saber.green.memomania.utils.SoundPool
 import com.saber.green.memomania.viewmodel.WinViewModel
 import kotlinx.android.synthetic.main.activity_win.*
+import java.util.*
 
 class WinActivity : AppCompatActivity() {
 
@@ -26,11 +27,17 @@ class WinActivity : AppCompatActivity() {
     }
 
     fun initSounds(){
-        winSound = SoundPool.getInstance()!!.load(this, R.raw.win_sound, 1)
+        winSound = SoundPool.getInstance()!!.load(applicationContext, R.raw.win_sound, 1)
     }
 
     fun playSound(){
-        if (viewModel.getSoundStatus().value!!) SoundPool.getInstance()!!.play(winSound!!, 1F, 1F, 0, 0, 1F)
+        if (viewModel.getSoundStatus().value!!) {
+            Timer(false).schedule(object : TimerTask() {
+                override fun run() {
+                    runOnUiThread { SoundPool.getInstance()!!.play(winSound!!, 1F, 1F, 0, 0, 1F) }
+                }
+            }, 500)
+        }
     }
 
     fun onHomeButtonPressed() {
