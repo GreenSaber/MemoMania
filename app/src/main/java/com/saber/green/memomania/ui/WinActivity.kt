@@ -6,25 +6,36 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.saber.green.memomania.R
 import com.saber.green.memomania.ui.game.GameActivity
+import com.saber.green.memomania.utils.SoundPool
 import com.saber.green.memomania.viewmodel.WinViewModel
 import kotlinx.android.synthetic.main.activity_win.*
 
 class WinActivity : AppCompatActivity() {
 
-    private lateinit var winViewModel: WinViewModel
+    private lateinit var viewModel: WinViewModel
+    private var winSound : Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_win)
-        winViewModel =  ViewModelProvider(this).get(WinViewModel::class.java)
-
+        viewModel =  ViewModelProvider(this).get(WinViewModel::class.java)
+        initSounds()
+        playSound()
         onHomeButtonPressed()
         onRestartButtonPressed()
     }
 
+    fun initSounds(){
+        winSound = SoundPool.getInstance()!!.load(this, R.raw.win_sound, 1)
+    }
+
+    fun playSound(){
+        if (viewModel.getSoundStatus().value!!) SoundPool.getInstance()!!.play(winSound!!, 1F, 1F, 0, 0, 1F)
+    }
+
     fun onHomeButtonPressed() {
         win_home_button.setOnClickListener {
-            winViewModel.resetGame()
+            viewModel.resetGame()
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
@@ -33,7 +44,7 @@ class WinActivity : AppCompatActivity() {
 
     fun onRestartButtonPressed() {
         win_restart_button.setOnClickListener {
-            winViewModel.resetGame()
+            viewModel.resetGame()
             val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
@@ -42,7 +53,7 @@ class WinActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        winViewModel.resetGame()
+        viewModel.resetGame()
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)

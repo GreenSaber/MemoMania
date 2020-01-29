@@ -6,15 +6,16 @@ import com.saber.green.memomania.utils.RandomUtils
 
 class GameDataProvider {
 
-    val FULL_TILES_COUNT_EASY = 9
-    val FULL_TILES_COUNT_CLASSIC = 12
-    val FULL_TILES_COUNT_HARD = 16
-
-    val LEVELS_COUNT_EASY = 8
-    val LEVELS_COUNT_CLASSIC = 10
-    val LEVELS_COUNT_HARD = 14
-
     companion object {
+
+        const val FULL_TILES_COUNT_EASY = 9
+        const val FULL_TILES_COUNT_CLASSIC = 12
+        const val FULL_TILES_COUNT_HARD = 16
+
+        const val LEVELS_COUNT_EASY = 8
+        const val LEVELS_COUNT_CLASSIC = 10
+        const val LEVELS_COUNT_HARD = 14
+
         private var instance: GameDataProvider? = null
 
         @Synchronized
@@ -29,13 +30,11 @@ class GameDataProvider {
     private var tilesArrayForEachLevelEasy: ArrayList<ArrayList<Tile>>? = null
     private var tilesArrayForEachLevelClassic: ArrayList<ArrayList<Tile>>? = null
     private var tilesArrayForEachLevelHard: ArrayList<ArrayList<Tile>>? = null
-    private var showTimingForEachLevel: ArrayList<Long>? = null
 
     init {
         tilesArrayForEachLevelEasy = getEasyDifficultyTilesArray()
         tilesArrayForEachLevelClassic = getClassicDifficultyTilesArray()
         tilesArrayForEachLevelHard = getHardDifficultyTilesArray()
-        showTimingForEachLevel = getShowTimingValueForEachLevel()
     }
 
     @Synchronized
@@ -51,11 +50,6 @@ class GameDataProvider {
                 tilesArrayForEachLevelHard
             }
         }
-    }
-
-    @Synchronized
-    fun getShowTimingValueForLevel(): ArrayList<Long>? {
-        return showTimingForEachLevel
     }
 
     @Synchronized
@@ -132,33 +126,6 @@ class GameDataProvider {
             )
         }
         return tilesArrayForEachLevel
-    }
-
-
-    private fun getShowTimingValueForEachLevel(): ArrayList<Long> {
-        val showTimingForEachLevel = ArrayList<Long>()
-        for (i in 1..LEVELS_COUNT_HARD) {
-            showTimingForEachLevel.add(
-                when (i) {
-                    1 -> 2500
-                    2 -> 3000
-                    3 -> 3500
-                    4 -> 4000
-                    5 -> 4500
-                    6 -> 5000
-                    7 -> 5500
-                    8 -> 6000
-                    9 -> 6500
-                    10 -> 7000
-                    11 -> 7500
-                    12 -> 8000
-                    13 -> 8500
-                    14 -> 9000
-                    else -> 0
-                }
-            )
-        }
-        return showTimingForEachLevel
     }
 
     private fun getUniqueTilesArray(

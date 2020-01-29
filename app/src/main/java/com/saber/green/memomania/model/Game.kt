@@ -5,7 +5,7 @@ import com.saber.green.memomania.data.GameDataProvider
 class Game {
 
     companion object {
-        private var lifesCount: Int = 5
+        private var lifesCount: Int = 4
         private var levelNumber: Int = 1
         private var difficulty: GameDifficulty = GameDifficulty.CLASSIC
         private var soundStatus: Boolean = false
@@ -16,6 +16,11 @@ class Game {
 
         fun setDifficulty(difficulty: GameDifficulty) {
             this.difficulty = difficulty
+            lifesCount = when (difficulty) {
+                GameDifficulty.EASY -> 3
+                GameDifficulty.CLASSIC -> 4
+                GameDifficulty.HARD -> 5
+            }
         }
 
         fun getSoundStatus(): Boolean {
@@ -41,13 +46,13 @@ class Game {
         fun getLevelsCount(): Int {
             return when (difficulty) {
                 GameDifficulty.EASY -> {
-                    GameDataProvider.getInstance()!!.LEVELS_COUNT_EASY
+                    GameDataProvider.LEVELS_COUNT_EASY
                 }
                 GameDifficulty.CLASSIC -> {
-                    GameDataProvider.getInstance()!!.LEVELS_COUNT_CLASSIC
+                    GameDataProvider.LEVELS_COUNT_CLASSIC
                 }
                 GameDifficulty.HARD -> {
-                    GameDataProvider.getInstance()!!.LEVELS_COUNT_HARD
+                    GameDataProvider.LEVELS_COUNT_HARD
                 }
             }
         }
@@ -61,7 +66,8 @@ class Game {
         }
 
         fun getShowTiming(): Long? {
-            return GameDataProvider.getInstance()?.getShowTimingValueForLevel()?.get(levelNumber-1)
+            val tilesSize = GameDataProvider.getInstance()?.getActiveTilesForLevel(difficulty)?.get(levelNumber-1)?.size!!
+            return (tilesSize * 700).toLong()
         }
 
         fun refreshData() {
@@ -70,7 +76,11 @@ class Game {
 
         fun resetGame() {
             GameDataProvider.getInstance()?.refreshData()
-            lifesCount = 5
+            lifesCount = when (difficulty) {
+                GameDifficulty.EASY -> 3
+                GameDifficulty.CLASSIC -> 4
+                GameDifficulty.HARD -> 5
+            }
             levelNumber = 1
         }
     }

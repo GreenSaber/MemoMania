@@ -62,16 +62,19 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
         when (difficulty.value!!) {
             GameDifficulty.EASY -> {
                 Game.setDifficulty(GameDifficulty.HARD)
+                Game.resetGame()
                 setDifficulty(GameDifficulty.HARD)
                 return GameDifficulty.HARD
             }
             GameDifficulty.CLASSIC -> {
                 Game.setDifficulty(GameDifficulty.EASY)
+                Game.resetGame()
                 setDifficulty(GameDifficulty.EASY)
                 return GameDifficulty.EASY
             }
             GameDifficulty.HARD -> {
                 Game.setDifficulty(GameDifficulty.CLASSIC)
+                Game.resetGame()
                 setDifficulty(GameDifficulty.CLASSIC)
                 return GameDifficulty.CLASSIC
             }
