@@ -42,4 +42,10 @@ class GameActivity : AppCompatActivity(){
         startActivity(intent)
         overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        val intent = Intent(this, MenuActivity::class.java)
+        startActivity(intent)
+    }
 }
