@@ -2,12 +2,14 @@ package com.saber.green.memomania.ui.game
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.saber.green.memomania.R
 import com.saber.green.memomania.model.GameDifficulty
 import com.saber.green.memomania.ui.MenuActivity
 import com.saber.green.memomania.viewmodel.GameViewModel
+import java.util.*
 
 
 class GameActivity : AppCompatActivity(){
@@ -46,6 +48,14 @@ class GameActivity : AppCompatActivity(){
     override fun onRestart() {
         super.onRestart()
         val intent = Intent(this, MenuActivity::class.java)
-        startActivity(intent)
+        Timer(false).schedule(object : TimerTask() {
+            override fun run() {
+                runOnUiThread {
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
+                    Toast.makeText(applicationContext, "Press 'PLAY' to continue", Toast.LENGTH_LONG).show()
+                }
+            }
+        }, 500)
     }
 }
