@@ -11,6 +11,93 @@
     tools:context=".ui.MenuActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/title_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/shape_grid"
+        android:backgroundTint="@color/dark_secondary_color"
+        app:layout_constraintBottom_toTopOf="@+id/menu_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <ImageView
+            android:id="@+id/arrow_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:padding="14dp"
+            android:src="@drawable/ic_arrow_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tile_card">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/arrow_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:padding="14dp"
+            android:src="@drawable/ic_arrow_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tile_card">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/difficulty_title"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/raleway_bold"
+            android:text="@string/classic"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.59"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tile_card"
+            app:layout_constraintVertical_bias="0.5">
+        </TextView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/tile_card"
+            android:layout_width="244dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient"
+            android:padding="@dimen/default_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/game_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_bold"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+            </TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/menu_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,12 +108,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_container"
         app:layout_constraintVertical_bias="0.65">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/play_button"
-            style="@style/menuButton"
+            style="@style/menu_button"
             android:text="@string/play"
             android:textColor="@color/white"
             app:backgroundTint="@color/accent_color"
@@ -40,7 +127,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/rate_button"
-            style="@style/menuButton"
+            style="@style/menu_button"
             android:layout_marginTop="16dp"
             android:text="@string/rate"
             android:textColor="@color/white"
@@ -52,34 +139,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/play_button">
         </com.google.android.material.button.MaterialButton>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/tile_card"
-        android:layout_width="224dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/gradient"
-        android:padding="@dimen/default_size"
-        app:layout_constraintBottom_toTopOf="@+id/menu_list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/raleway_bold"
-            android:text="@string/app_name"
-            android:textAlignment="center"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sound_button_main"
+            style="@style/menu_button"
+            android:layout_marginTop="16dp"
+            android:text="@string/sound_on"
             android:textColor="@color/white"
-            android:textSize="40sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:backgroundTint="@color/accent_color"
+            app:icon="@drawable/ic_sound_on"
+            app:iconGravity="start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </TextView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/rate_button">
+        </com.google.android.material.button.MaterialButton>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/vibration_button_main"
+            style="@style/menu_button"
+            android:layout_marginTop="16dp"
+            android:text="@string/vibration_off"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/accent_color"
+            app:icon="@drawable/ic_vibrate"
+            app:iconGravity="start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sound_button_main">
+        </com.google.android.material.button.MaterialButton>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

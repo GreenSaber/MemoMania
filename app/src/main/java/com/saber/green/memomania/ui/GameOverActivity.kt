@@ -4,8 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.saber.green.memomania.R
+import com.saber.green.memomania.ui.game.GameActivity
 import com.saber.green.memomania.viewmodel.GameOverViewModel
 import kotlinx.android.synthetic.main.activity_game_over.*
 
@@ -16,7 +17,7 @@ class GameOverActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
-        gameOverViewModel = ViewModelProviders.of(this).get(GameOverViewModel::class.java)
+        gameOverViewModel =  ViewModelProvider(this).get(GameOverViewModel::class.java)
         initLevelObserver()
         onHomeButtonPressed()
         onRestartButtonPressed()

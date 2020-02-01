@@ -7,12 +7,13 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.saber.green.memomania.R
+import com.saber.green.memomania.ui.game.GameActivity
 import com.saber.green.memomania.utils.AnimationUtils
 import com.saber.green.memomania.utils.MotivationTextUtils
 import com.saber.green.memomania.viewmodel.NextLevelViewModel
@@ -28,7 +29,7 @@ class NextLevelActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_next_level)
-        nextLevelViewModel = ViewModelProviders.of(this).get(NextLevelViewModel::class.java)
+        nextLevelViewModel =  ViewModelProvider(this).get(NextLevelViewModel::class.java)
         initMotivationText()
         initLevelCountObservable1()
         initLifeObserver()

@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">12 Tiles</string>
+    <string name="app_name_easy">9 Tiles</string>
+    <string name="app_name_hard">16 Tiles</string>
+    <string name="easy">Easy</string>
+    <string name="classic">Classic</string>
+    <string name="hard">Hard</string>
     <string name="play">play</string>
     <string name="home">home</string>
     <string name="rate">rate</string>
+    <string name="sound_on">sound: on</string>
+    <string name="sound_off">sound: off</string>
+    <string name="vibration_on">vibration: on</string>
+    <string name="vibration_off">vibration: off</string>
     <string name="ready">ready</string>
-    <string name="level">level</string>
+    <string name="level">Level</string>
     <string name="restart">restart</string>
     <string name="congratulations">Congratulations!</string>
     <string name="you_win">You win</string>
@@ -13,4 +22,7 @@
     <string name="next_level_is">Next level is: </string>
     <string name="nothing_can_stop_you">Nothing can stop you now!</string>
     <string name="game_over">Game over</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

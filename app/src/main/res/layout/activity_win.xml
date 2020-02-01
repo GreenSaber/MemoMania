@@ -69,7 +69,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/win_home_button"
-            style="@style/menuButton"
+            style="@style/menu_button"
             android:backgroundTint="@color/accent_color"
             android:text="@string/home"
             android:textColor="@color/white"
@@ -83,7 +83,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/win_restart_button"
-            style="@style/menuButton"
+            style="@style/menu_button"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/accent_color"
             android:text="@string/restart"

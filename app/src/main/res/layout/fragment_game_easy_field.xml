@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/grid_layout"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_grid"
+    android:backgroundTint="@color/dark_secondary_color"
+    android:columnCount="3"
+    android:padding="4dp"
+    android:rowCount="3"
+    tools:context=".ui.game.ClassicGameFieldFragment">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gameTileButton1"
+        style="@style/gridButton">
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gameTileButton2"
+        style="@style/gridButton">
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gameTileButton3"
+        style="@style/gridButton">
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gameTileButton4"
+        style="@style/gridButton">
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gameTileButton5"
+        style="@style/gridButton">
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gameTileButton6"
+        style="@style/gridButton">
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gameTileButton7"
+        style="@style/gridButton">
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gameTileButton8"
+        style="@style/gridButton">
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gameTileButton9"
+        style="@style/gridButton">
+    </com.google.android.material.button.MaterialButton>
+
+</GridLayout>
