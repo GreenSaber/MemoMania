@@ -8,7 +8,8 @@ class Game {
         private var lifesCount: Int = 4
         private var levelNumber: Int = 1
         private var difficulty: GameDifficulty = GameDifficulty.CLASSIC
-        private var soundStatus: Boolean = false
+        private var soundStatus: Boolean = true
+        private var vibrationStatus: Boolean = true
 
         fun getDifficulty(): GameDifficulty {
             return difficulty
@@ -29,6 +30,14 @@ class Game {
 
         fun setSoundStatus(status: Boolean) {
             soundStatus = status
+        }
+
+        fun getVibrationStatus(): Boolean {
+            return vibrationStatus
+        }
+
+        fun setVibrationStatus(status: Boolean) {
+            vibrationStatus = status
         }
 
         fun getLevel(): Int {

@@ -27,13 +27,11 @@ open class BaseGameFieldFragment : Fragment(){
     private val TAG = "GameActivity"
     private val INITIAL_SHOW_DELAY : Long = 2000
     private var correctSound : Int? = null
-    private lateinit var vibrationUtils: VibrationUtils
     private val activeButtons = ArrayList<MaterialButton>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(activity!!).get(GameViewModel::class.java)
-        vibrationUtils = VibrationUtils(activity as AppCompatActivity)
         initActiveButtons()
         initSounds()
         highlightActiveButtons(activity!!)
@@ -86,36 +84,48 @@ open class BaseGameFieldFragment : Fragment(){
 
                 when (viewModel.getGameLifecycle(buttonValue)) {
                     GameLifecycle.CORRECT_VALUE -> {
-                        if (viewModel.getSoundStatus().value!!) SoundPool.getInstance()!!.play(correctSound!!, 1F, 1F, 0, 0, 1F)
-                        vibrationUtils.correctValueVibration()
+                        playCorrectSoundIfOn()
+                        vibrateIfOn(VibrationUtils.PATTERN_CORRECT_VALUE)
                         AnimationUtils.correctValueTileAnimation(activity!!, button)
                         setTileParams(context, button, buttonValue, R.color.dark_button_color,false)
                     }
                     GameLifecycle.INCORRECT_VALUE -> {
-                        vibrationUtils.inCorrectValueVibration()
+                        vibrateIfOn(VibrationUtils.PATTERN_INCORRECT_VALUE)
                         AnimationUtils.incorrectValueTileAnimation(activity!!, button)
                     }
                     GameLifecycle.NEXT_LEVEL -> {
-                        if (viewModel.getSoundStatus().value!!) SoundPool.getInstance()!!.play(correctSound!!, 1F, 1F, 0, 0, 1F)
-                        vibrationUtils.correctValueVibration()
+                        playCorrectSoundIfOn()
+                        vibrateIfOn(VibrationUtils.PATTERN_CORRECT_VALUE)
                         AnimationUtils.correctValueTileAnimation(activity!!, button)
                         setTileParams(context, button, buttonValue, R.color.dark_button_color,false)
                         navigateToNextLevelActivity()
                     }
                     GameLifecycle.WIN -> {
-                        if (viewModel.getSoundStatus().value!!) SoundPool.getInstance()!!.play(correctSound!!, 1F, 1F, 0, 0, 1F)
-                        vibrationUtils.correctValueVibration()
+                        playCorrectSoundIfOn()
+                        vibrateIfOn(VibrationUtils.PATTERN_CORRECT_VALUE)
                         AnimationUtils.correctValueTileAnimation(activity!!, button)
                         setTileParams(context, button, buttonValue, R.color.dark_button_color,false)
                         navigateToWinActivity()
                     }
                     GameLifecycle.GAME_OVER -> {
-                        vibrationUtils.inCorrectValueVibration()
+                        vibrateIfOn(VibrationUtils.PATTERN_INCORRECT_VALUE)
                         AnimationUtils.incorrectValueTileAnimation(activity!!, button)
                         navigateToGameOverActivity()
                     }
                 }
             }
+        }
+    }
+
+    private fun playCorrectSoundIfOn(){
+        if (viewModel.getSoundStatus().value!!) {
+            SoundPool.getInstance()!!.play(correctSound!!, 1F, 1F, 0, 0, 1F)
+        }
+    }
+
+    private fun vibrateIfOn(pattern : LongArray){
+        if (viewModel.getVibrationStatus().value!!) {
+            VibrationUtils.vibrate(activity as AppCompatActivity, pattern)
         }
     }
 

@@ -28,8 +28,10 @@ class MenuActivity : AppCompatActivity() {
         onRightArrowButtonClick()
         onLeftArrowButtonClick()
         onSoundButtonClick()
+        onVibrationButtonClick()
         initDifficultyObserver()
         initSoundObserver()
+        initVibrationObserver()
     }
 
     fun onPlayButtonClicked() {
@@ -87,9 +89,27 @@ class MenuActivity : AppCompatActivity() {
         })
     }
 
+    fun initVibrationObserver(){
+        viewModel.getVibrationStatus().observe(this, Observer {
+            if (viewModel.getVibrationStatus().value == true){
+                vibration_button_main.text = resources.getString(R.string.vibration_on)
+                vibration_button_main.icon = resources.getDrawable(R.drawable.ic_vibrate, theme)
+            } else {
+                vibration_button_main.text = resources.getString(R.string.vibration_off)
+                vibration_button_main.icon = resources.getDrawable(R.drawable.ic_vibrate_off, theme)
+            }
+        })
+    }
+
     fun onSoundButtonClick(){
         sound_button_main.setOnClickListener{
             viewModel.onSoundButtonClick()
+        }
+    }
+
+    fun onVibrationButtonClick(){
+        vibration_button_main.setOnClickListener{
+            viewModel.onVibrationButtonClick()
         }
     }
 

@@ -32,8 +32,10 @@ class InfoPanelFragment : Fragment() {
         initLifeObserver()
         initWrongAnswersObserver()
         initSoundObserver()
+        initVibrationObserver()
         onHomeButtonClick()
         onSoundButtonClick()
+        onVibrationButtonClick()
         onRestartButtonClick()
     }
 
@@ -71,14 +73,30 @@ class InfoPanelFragment : Fragment() {
         })
     }
 
+    fun initVibrationObserver(){
+        viewModel.getVibrationStatus().observe(viewLifecycleOwner, Observer {
+            if (viewModel.getVibrationStatus().value == true){
+                vibration_button_game.icon = resources.getDrawable(R.drawable.ic_vibrate, activity!!.theme)
+            } else {
+                vibration_button_game.icon = resources.getDrawable(R.drawable.ic_vibrate_off, activity!!.theme)
+            }
+        })
+    }
+
     fun onSoundButtonClick() {
         sound_button_game.setOnClickListener {
             viewModel.onSoundButtonClick()
         }
     }
 
+    fun onVibrationButtonClick() {
+        vibration_button_game.setOnClickListener {
+            viewModel.onVibrationButtonClick()
+        }
+    }
+
     fun onHomeButtonClick() {
-        home_button.setOnClickListener {
+        home_button_game.setOnClickListener {
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
             activity?.overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
@@ -86,7 +104,7 @@ class InfoPanelFragment : Fragment() {
     }
 
     fun onRestartButtonClick() {
-        restart_button.setOnClickListener {
+        restart_button_game.setOnClickListener {
             viewModel.resetGame()
             val intent = Intent(activity, GameActivity::class.java)
             startActivity(intent)

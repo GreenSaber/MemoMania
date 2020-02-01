@@ -10,8 +10,10 @@
     <string name="rate">rate</string>
     <string name="sound_on">sound: on</string>
     <string name="sound_off">sound: off</string>
+    <string name="vibration_on">vibration: on</string>
+    <string name="vibration_off">vibration: off</string>
     <string name="ready">ready</string>
-    <string name="level">level</string>
+    <string name="level">Level</string>
     <string name="restart">restart</string>
     <string name="congratulations">Congratulations!</string>
     <string name="you_win">You win</string>

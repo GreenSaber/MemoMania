@@ -17,11 +17,13 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private val levels = MutableLiveData<String>()
     private val wrongAnswers = MutableLiveData<Int>()
     private val soundStatus = MutableLiveData<Boolean>()
+    private val vibrationStatus = MutableLiveData<Boolean>()
 
     init {
         lifes.value = Game.getLifesCount().toString()
         levels.value = Game.getLevel().toString()
         soundStatus.value = Game.getSoundStatus()
+        vibrationStatus.value = Game.getVibrationStatus()
     }
 
     fun getLifes(): LiveData<String> = lifes
@@ -31,6 +33,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun getWrongAnswers(): LiveData<Int> = wrongAnswers
 
     fun getSoundStatus(): LiveData<Boolean> = soundStatus
+
+    fun getVibrationStatus(): LiveData<Boolean> = vibrationStatus
 
     fun getActiveTiles(): ArrayList<Tile> {
         return Game.getActiveTiles()!!
@@ -78,6 +82,12 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         val statusToSet: Boolean = !Game.getSoundStatus()
         Game.setSoundStatus(statusToSet)
         soundStatus.value = statusToSet
+    }
+
+    fun onVibrationButtonClick() {
+        val statusToSet: Boolean = !Game.getVibrationStatus()
+        Game.setVibrationStatus(statusToSet)
+        vibrationStatus.value = statusToSet
     }
 
     fun resetGame(){

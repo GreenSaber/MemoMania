@@ -11,10 +11,12 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
 
     private val difficulty = MutableLiveData<GameDifficulty>()
     private val soundStatus = MutableLiveData<Boolean>()
+    private val vibrationStatus = MutableLiveData<Boolean>()
 
     init {
         difficulty.value = Game.getDifficulty()
         soundStatus.value = Game.getSoundStatus()
+        vibrationStatus.value = Game.getVibrationStatus()
     }
 
     fun getDifficulty(): LiveData<GameDifficulty> {
@@ -25,6 +27,10 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
         return soundStatus
     }
 
+    fun getVibrationStatus(): LiveData<Boolean> {
+        return vibrationStatus
+    }
+
     private fun setDifficulty(gameDifficulty: GameDifficulty) {
         difficulty.value = gameDifficulty
     }
@@ -33,6 +39,12 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
         val statusToSet: Boolean = !Game.getSoundStatus()
         Game.setSoundStatus(statusToSet)
         soundStatus.value = statusToSet
+    }
+
+    fun onVibrationButtonClick() {
+        val statusToSet: Boolean = !Game.getVibrationStatus()
+        Game.setVibrationStatus(statusToSet)
+        vibrationStatus.value = statusToSet
     }
 
     fun onRightArrowButtonClick(): GameDifficulty {
