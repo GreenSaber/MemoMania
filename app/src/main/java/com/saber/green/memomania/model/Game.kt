@@ -71,20 +71,20 @@ class Game {
         }
 
         fun getActiveTiles(): ArrayList<Tile>? {
-            return GameDataProvider.getInstance()?.getActiveTilesForLevel(difficulty)?.get(levelNumber-1)
+            return GameDataProvider.getActiveTilesForLevel(difficulty)?.get(levelNumber-1)
         }
 
         fun getShowTiming(): Long? {
-            val tilesSize = GameDataProvider.getInstance()?.getActiveTilesForLevel(difficulty)?.get(levelNumber-1)?.size!!
+            val tilesSize = GameDataProvider.getActiveTilesForLevel(difficulty)?.get(levelNumber-1)?.size!!
             return (tilesSize * 700).toLong()
         }
 
         fun refreshData() {
-            GameDataProvider.getInstance()?.refreshData()
+            GameDataProvider.refreshData()
         }
 
         fun resetGame() {
-            GameDataProvider.getInstance()?.refreshData()
+            GameDataProvider.refreshData()
             lifesCount = when (difficulty) {
                 GameDifficulty.EASY -> 3
                 GameDifficulty.CLASSIC -> 4

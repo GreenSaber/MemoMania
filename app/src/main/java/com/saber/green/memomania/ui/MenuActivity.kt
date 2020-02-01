@@ -60,7 +60,7 @@ class MenuActivity : AppCompatActivity() {
 
     fun initDifficultyObserver() {
         viewModel.getDifficulty().observe(this, Observer {
-            when (viewModel.getDifficulty().value!!) {
+            when (it!!) {
                 GameDifficulty.EASY -> {
                     difficulty_title.text = resources.getString(R.string.easy)
                     game_title.text = resources.getString(R.string.app_name_easy)
@@ -79,7 +79,7 @@ class MenuActivity : AppCompatActivity() {
 
     fun initSoundObserver(){
         viewModel.getSoundStatus().observe(this, Observer {
-            if (viewModel.getSoundStatus().value == true){
+            if (it){
                 sound_button_main.text = resources.getString(R.string.sound_on)
                 sound_button_main.icon = resources.getDrawable(R.drawable.ic_sound_on, theme)
             } else {
@@ -91,7 +91,7 @@ class MenuActivity : AppCompatActivity() {
 
     fun initVibrationObserver(){
         viewModel.getVibrationStatus().observe(this, Observer {
-            if (viewModel.getVibrationStatus().value == true){
+            if (it){
                 vibration_button_main.text = resources.getString(R.string.vibration_on)
                 vibration_button_main.icon = resources.getDrawable(R.drawable.ic_vibrate, theme)
             } else {

@@ -14,10 +14,10 @@ class AnimationUtils {
 
     companion object{
 
-        val DURATION : Long = 300
-        val INCORRECT_DURATION : Long = 500
-        val TILE_SCALE_SIZE = 1.08f
-        val HEART_SCALE_SIZE = 1.5f
+        const val DURATION : Long = 300
+        const val INCORRECT_DURATION : Long = 500
+        const val TILE_SCALE_SIZE = 1.08f
+        const val HEART_SCALE_SIZE = 1.5f
 
         fun incorrectValueTileAnimation(activity: Activity, view: View){
             viewTwoColorAnimation(activity as AppCompatActivity, view, R.color.accent_color, R.color.red, INCORRECT_DURATION, 1)

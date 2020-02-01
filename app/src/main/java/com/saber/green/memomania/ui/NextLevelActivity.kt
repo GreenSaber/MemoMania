@@ -56,8 +56,7 @@ class NextLevelActivity : AppCompatActivity() {
 
     fun initLevelCountObservable1() {
         nextLevelViewModel.getLevelCount().observe(this, Observer {
-            val value = nextLevelViewModel.getLevelCount().value.toString()
-            val resultText = "${resources.getString(R.string.next_level_is)} $value"
+            val resultText = "${resources.getString(R.string.next_level_is)} $it"
             next_level_number.text = resultText
         })
     }
@@ -66,8 +65,7 @@ class NextLevelActivity : AppCompatActivity() {
         nextLevelViewModel.getLifeCount().observe(this, Observer {
             Timer(false).schedule(object : TimerTask() {
                 override fun run() {
-                    runOnUiThread {
-                        life_number_next_menu.text = nextLevelViewModel.getLifeCount().value                    }
+                    runOnUiThread { life_number_next_menu.text = it }
                 }
             }, AnimationUtils.DURATION)
         })

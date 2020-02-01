@@ -4,28 +4,15 @@ import com.saber.green.memomania.model.GameDifficulty
 import com.saber.green.memomania.model.Tile
 import com.saber.green.memomania.utils.RandomUtils
 
-class GameDataProvider {
+object GameDataProvider {
 
-    companion object {
+    const val LEVELS_COUNT_EASY = 8
+    const val LEVELS_COUNT_CLASSIC = 10
+    const val LEVELS_COUNT_HARD = 14
 
-        const val FULL_TILES_COUNT_EASY = 9
-        const val FULL_TILES_COUNT_CLASSIC = 12
-        const val FULL_TILES_COUNT_HARD = 16
-
-        const val LEVELS_COUNT_EASY = 8
-        const val LEVELS_COUNT_CLASSIC = 10
-        const val LEVELS_COUNT_HARD = 14
-
-        private var instance: GameDataProvider? = null
-
-        @Synchronized
-        fun getInstance(): GameDataProvider? {
-            if (instance == null) {
-                instance = GameDataProvider()
-            }
-            return instance
-        }
-    }
+    private const val FULL_TILES_COUNT_EASY = 9
+    private const val FULL_TILES_COUNT_CLASSIC = 12
+    private const val FULL_TILES_COUNT_HARD = 16
 
     private var tilesArrayForEachLevelEasy: ArrayList<ArrayList<Tile>>? = null
     private var tilesArrayForEachLevelClassic: ArrayList<ArrayList<Tile>>? = null
@@ -37,7 +24,6 @@ class GameDataProvider {
         tilesArrayForEachLevelHard = getHardDifficultyTilesArray()
     }
 
-    @Synchronized
     fun getActiveTilesForLevel(gameDifficulty: GameDifficulty): ArrayList<ArrayList<Tile>>? {
         return when (gameDifficulty) {
             GameDifficulty.EASY -> {
@@ -52,13 +38,11 @@ class GameDataProvider {
         }
     }
 
-    @Synchronized
     fun refreshData() {
         tilesArrayForEachLevelEasy = getEasyDifficultyTilesArray()
         tilesArrayForEachLevelClassic = getClassicDifficultyTilesArray()
         tilesArrayForEachLevelHard = getHardDifficultyTilesArray()
     }
-
 
     private fun getEasyDifficultyTilesArray(): ArrayList<ArrayList<Tile>> {
         val tilesArrayForEachLevel = ArrayList<ArrayList<Tile>>()
@@ -128,11 +112,7 @@ class GameDataProvider {
         return tilesArrayForEachLevel
     }
 
-    private fun getUniqueTilesArray(
-        arraySize: Int,
-        valuesMaxCount: Int,
-        numbersMaxCount: Int
-    ): ArrayList<Tile> {
+    private fun getUniqueTilesArray(arraySize: Int, valuesMaxCount: Int, numbersMaxCount: Int): ArrayList<Tile> {
         val tilesList = ArrayList<Tile>()
         val numbers = RandomUtils.getListOfUniqueRandomElements(arraySize, numbersMaxCount)
         val values = RandomUtils.getListOfUniqueRandomElements(arraySize, valuesMaxCount)

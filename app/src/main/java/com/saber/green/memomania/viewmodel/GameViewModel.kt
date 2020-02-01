@@ -14,21 +14,19 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private var rightAnswersCount: Int = 0
     private var wrongAnswersCount: Int = 0
     private val lifes = MutableLiveData<String>()
-    private val levels = MutableLiveData<String>()
     private val wrongAnswers = MutableLiveData<Int>()
     private val soundStatus = MutableLiveData<Boolean>()
     private val vibrationStatus = MutableLiveData<Boolean>()
 
     init {
         lifes.value = Game.getLifesCount().toString()
-        levels.value = Game.getLevel().toString()
         soundStatus.value = Game.getSoundStatus()
         vibrationStatus.value = Game.getVibrationStatus()
     }
 
     fun getLifes(): LiveData<String> = lifes
 
-    fun getLevels(): LiveData<String> = levels
+    fun getCurrentLevel(): String = Game.getLevel().toString()
 
     fun getWrongAnswers(): LiveData<Int> = wrongAnswers
 
@@ -54,7 +52,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             if (rightAnswersCount == getActiveTiles().size) {
                 val level = Game.getLevel() + 1
                 Game.setLevel(level)
-                levels.value = Game.getLevel().toString()
                 if (Game.getLevel() <= Game.getLevelsCount()) {
                     return GameLifecycle.NEXT_LEVEL
                 } else {

@@ -43,14 +43,6 @@ class WinActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        viewModel.resetGame()
-        val intent = Intent(this, MenuActivity::class.java)
-        startActivity(intent)
-        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
-    }
-
     fun playSound() {
         if (viewModel.getSoundStatus().value!!) {
             if (player == null) {
@@ -74,4 +66,13 @@ class WinActivity : AppCompatActivity() {
         super.onPause()
         stopPlayer()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        viewModel.resetGame()
+        val intent = Intent(this, MenuActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
+    }
+
 }

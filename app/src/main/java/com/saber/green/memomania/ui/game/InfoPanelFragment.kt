@@ -28,7 +28,7 @@ class InfoPanelFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initLevelObserver()
+        initLevel()
         initLifeObserver()
         initWrongAnswersObserver()
         initSoundObserver()
@@ -39,10 +39,8 @@ class InfoPanelFragment : Fragment() {
         onRestartButtonClick()
     }
 
-    fun initLevelObserver() {
-        viewModel.getLevels().observe(activity!!, Observer {
-            level_number.text = viewModel.getLevels().value
-        })
+    fun initLevel() {
+        level_number.text=viewModel.getCurrentLevel()
     }
 
     fun initLifeObserver() {
@@ -65,21 +63,17 @@ class InfoPanelFragment : Fragment() {
 
     fun initSoundObserver(){
         viewModel.getSoundStatus().observe(viewLifecycleOwner, Observer {
-            if (viewModel.getSoundStatus().value == true){
-                sound_button_game.icon = resources.getDrawable(R.drawable.ic_sound_on, activity!!.theme)
-            } else {
-                sound_button_game.icon = resources.getDrawable(R.drawable.ic_sound_off, activity!!.theme)
-            }
+            sound_button_game.icon = if (it)
+                resources.getDrawable(R.drawable.ic_sound_on, activity!!.theme)
+            else resources.getDrawable(R.drawable.ic_sound_off, activity!!.theme)
         })
     }
 
     fun initVibrationObserver(){
         viewModel.getVibrationStatus().observe(viewLifecycleOwner, Observer {
-            if (viewModel.getVibrationStatus().value == true){
-                vibration_button_game.icon = resources.getDrawable(R.drawable.ic_vibrate, activity!!.theme)
-            } else {
-                vibration_button_game.icon = resources.getDrawable(R.drawable.ic_vibrate_off, activity!!.theme)
-            }
+            vibration_button_game.icon = if (it)
+                resources.getDrawable(R.drawable.ic_vibrate, activity!!.theme)
+            else resources.getDrawable(R.drawable.ic_vibrate_off, activity!!.theme)
         })
     }
 
