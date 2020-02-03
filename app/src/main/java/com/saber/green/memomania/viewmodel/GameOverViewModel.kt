@@ -14,7 +14,6 @@ class GameOverViewModel(application: Application) : AndroidViewModel(application
     init {
         levelCount.value = Game.getLevel().toString()
         soundStatus.value = Game.getSoundStatus()
-
     }
 
     fun getSoundStatus(): LiveData<Boolean> = soundStatus

@@ -1,9 +1,7 @@
 package com.saber.green.memomania.ui
 
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.saber.green.memomania.R
 import com.saber.green.memomania.ui.game.GameActivity
@@ -11,10 +9,9 @@ import com.saber.green.memomania.viewmodel.WinViewModel
 import kotlinx.android.synthetic.main.activity_win.*
 
 
-class WinActivity : AppCompatActivity() {
+class WinActivity : BaseActivity() {
 
     private lateinit var viewModel: WinViewModel
-    private var player : MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,20 +42,7 @@ class WinActivity : AppCompatActivity() {
 
     fun playSound() {
         if (viewModel.getSoundStatus().value!!) {
-            if (player == null) {
-                player = MediaPlayer.create(this, R.raw.win_sound)
-                player?.setOnCompletionListener {
-                    stopPlayer()
-                }
-            }
-            player?.start()
-        }
-    }
-
-    private fun stopPlayer() {
-        if (player != null) {
-            player!!.release()
-            player = null
+            startPlayer(this,R.raw.win_sound)
         }
     }
 

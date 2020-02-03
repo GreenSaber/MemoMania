@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.daimajia.androidanimations.library.Techniques
@@ -15,7 +14,7 @@ import com.saber.green.memomania.ui.game.GameActivity
 import com.saber.green.memomania.viewmodel.MenuViewModel
 import kotlinx.android.synthetic.main.activity_menu.*
 
-class MenuActivity : AppCompatActivity() {
+class MenuActivity : BaseActivity() {
 
     private lateinit var viewModel: MenuViewModel
 

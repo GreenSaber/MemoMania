@@ -23,8 +23,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 open class BaseGameFieldFragment : Fragment(){
-    private lateinit var viewModel: GameViewModel
+
     private val TAG = "GameActivity"
+    private lateinit var viewModel: GameViewModel
     private val INITIAL_SHOW_DELAY : Long = 2000
     private var correctSound : Int? = null
     private var inCorrectSound : Int? = null
@@ -149,7 +150,7 @@ open class BaseGameFieldFragment : Fragment(){
                     activity?.overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
                 }
             }
-        }, AnimationUtils.DURATION)
+        }, AnimationUtils.DURATION_DEFAULT)
     }
 
     private fun navigateToNextLevelActivity(){
@@ -161,7 +162,7 @@ open class BaseGameFieldFragment : Fragment(){
                     activity?.overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
                 }
             }
-        }, AnimationUtils.DURATION * 2)
+        }, AnimationUtils.DURATION_DEFAULT * 2)
     }
 
     private fun navigateToGameOverActivity(){
@@ -173,7 +174,7 @@ open class BaseGameFieldFragment : Fragment(){
                     activity?.overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
                 }
             }
-        }, AnimationUtils.INCORRECT_DURATION)
+        }, AnimationUtils.DURATION_DOUBLE)
     }
 
     private fun setTileParams(context: Context, button: MaterialButton, buttonValue: String, color: Int, isAvailable : Boolean) {

@@ -1,17 +1,19 @@
 package com.saber.green.memomania.ui
 
+import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.GradientDrawable
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.saber.green.memomania.R
 import com.saber.green.memomania.ui.game.GameActivity
@@ -21,17 +23,18 @@ import com.saber.green.memomania.viewmodel.NextLevelViewModel
 import kotlinx.android.synthetic.main.activity_next_level.*
 import java.util.*
 
-class NextLevelActivity : AppCompatActivity() {
+class NextLevelActivity : BaseActivity() {
 
     private val TAG = "NextLevelActivity"
+    private val FAILED_TO_LOAD_AD = "Failed to load video ad"
     private lateinit var viewModel: NextLevelViewModel
     private lateinit var rewardedAd: RewardedAd
-    private var player : MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_next_level)
         viewModel =  ViewModelProvider(this).get(NextLevelViewModel::class.java)
+        setGetLifeButtonStatus(false)
         initMotivationText()
         initLevelCountObservable1()
         initLifeObserver()
@@ -43,13 +46,10 @@ class NextLevelActivity : AppCompatActivity() {
         rewardedAd = RewardedAd(this, "ca-app-pub-3940256099942544/5224354917")
         val adLoadCallback = object: RewardedAdLoadCallback() {
             override fun onRewardedAdLoaded() {
-                Log.i(TAG, "rewarded Ad loaded")
-            }
-            override fun onRewardedAdFailedToLoad(errorCode: Int) {
-                Log.i(TAG, "rewarded Ad failed to load")
+                setGetLifeButtonStatus(true)
             }
         }
-        rewardedAd.loadAd(AdRequest.Builder().build(), adLoadCallback)
+        rewardedAd.loadAd(AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build(), adLoadCallback)
     }
 
     fun initMotivationText(){
@@ -69,7 +69,7 @@ class NextLevelActivity : AppCompatActivity() {
                 override fun run() {
                     runOnUiThread { life_number_next_menu.text = it }
                 }
-            }, AnimationUtils.DURATION)
+            }, AnimationUtils.DURATION_DEFAULT)
         })
     }
 
@@ -81,66 +81,62 @@ class NextLevelActivity : AppCompatActivity() {
         }
     }
 
-    fun onGetLifeButtonClick(){
+    fun onGetLifeButtonClick() {
         get_life_button.setOnClickListener {
-            AnimationUtils.layoutColorAnimation(this, life_card_next_menu.background as GradientDrawable, R.color.accent_color, R.color.green, AnimationUtils.DURATION)
-            AnimationUtils.scaleAnimation(heart_icon_next_menu, 1.5f, AnimationUtils.DURATION)
-            viewModel.addLife()
-            it.isClickable = false
-            it.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_button_color))
-        }
+            if (rewardedAd.isLoaded) {
+                val activityContext: Activity = this
+                var rewardEarned = false
+                val adCallback = object : RewardedAdCallback() {
 
-//        get_life_button.setOnClickListener {
-//            if (rewardedAd.isLoaded) {
-//                val activityContext: Activity = this
-//                val adCallback = object: RewardedAdCallback() {
-//                    override fun onRewardedAdOpened() {
-//                        Log.i(TAG, "Ad opened")
-//                    }
-//                    override fun onRewardedAdClosed() {
-//                        Log.i(TAG, "Ad closed")
-//                    }
-//                    override fun onUserEarnedReward(@NonNull reward: RewardItem) {
-//                        Log.i(TAG, "User earned reward")
-//                    }
-//                    override fun onRewardedAdFailedToShow(errorCode: Int) {
-//                        Log.i(TAG, "Ad failed to display")
-//                    }
-//                }
-//                rewardedAd.show(activityContext, adCallback)
-//            }
-//            else {
-//                Log.d(TAG, "The rewarded ad wasn't loaded yet")
-//            }
-//        }
+                    override fun onRewardedAdClosed() {
+                        Log.i(TAG, "Ad closed")
+                        if (rewardEarned) {
+                            Timer(false).schedule(object : TimerTask() {
+                                override fun run() {
+                                    runOnUiThread {
+                                        viewModel.addLife()
+                                        AnimationUtils.lifeIncreaseNextLevelAnimation(this@NextLevelActivity, life_card_next_menu, heart_icon_next_menu)
+                                        setGetLifeButtonStatus(false)
+                                    }
+                                }
+                            },  1000)
+                        }
+                    }
+
+                    override fun onUserEarnedReward(@NonNull reward: RewardItem) {
+                        Log.i(TAG, "User earned reward")
+                        rewardEarned = true
+                    }
+
+                    override fun onRewardedAdFailedToShow(errorCode: Int) {
+                        Log.i(TAG, "Ad failed to display")
+                        Toast.makeText(applicationContext, FAILED_TO_LOAD_AD, Toast.LENGTH_SHORT).show()
+                    }
+                }
+                rewardedAd.show(activityContext, adCallback)
+            } else {
+                Toast.makeText(applicationContext, FAILED_TO_LOAD_AD, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
+    private fun setGetLifeButtonStatus(status : Boolean){
+        if (status){
+            get_life_button.isClickable = true
+            get_life_button.setBackgroundColor(ContextCompat.getColor(this, R.color.accent_color))
+        } else {
+            get_life_button.isClickable = false
+            get_life_button.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_button_color))
+        }
+    }
 
     fun playSound() {
         if (viewModel.getSoundStatus().value!!) {
-
             Timer(false).schedule(object : TimerTask() {
                 override fun run() {
-                    runOnUiThread {
-
-                        if (player == null) {
-                            player = MediaPlayer.create(application.applicationContext, R.raw.next_level)
-                            player?.setOnCompletionListener {
-                                stopPlayer()
-                            }
-                        }
-                        player?.start()
-
-                    }
+                    runOnUiThread { startPlayer(application.applicationContext, R.raw.next_level) }
                 }
             }, 350)
-        }
-    }
-
-    private fun stopPlayer() {
-        if (player != null) {
-            player!!.release()
-            player = null
         }
     }
 
@@ -148,7 +144,6 @@ class NextLevelActivity : AppCompatActivity() {
         super.onPause()
         stopPlayer()
     }
-
 
     override fun onBackPressed() {
         super.onBackPressed()

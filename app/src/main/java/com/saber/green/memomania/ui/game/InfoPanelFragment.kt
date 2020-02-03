@@ -40,7 +40,7 @@ class InfoPanelFragment : Fragment() {
     }
 
     fun initLevel() {
-        level_number.text=viewModel.getCurrentLevel()
+        level_number.text = viewModel.getCurrentLevel()
     }
 
     fun initLifeObserver() {
@@ -51,7 +51,7 @@ class InfoPanelFragment : Fragment() {
                         life_number.text = it
                     }
                 }
-            }, AnimationUtils.DURATION)
+            }, AnimationUtils.DURATION_DEFAULT)
         })
     }
 

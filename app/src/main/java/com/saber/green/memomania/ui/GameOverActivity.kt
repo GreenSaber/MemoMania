@@ -1,9 +1,7 @@
 package com.saber.green.memomania.ui
 
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.saber.green.memomania.R
@@ -12,10 +10,9 @@ import com.saber.green.memomania.viewmodel.GameOverViewModel
 import kotlinx.android.synthetic.main.activity_game_over.*
 import java.util.*
 
-class GameOverActivity : AppCompatActivity() {
+class GameOverActivity : BaseActivity() {
 
     private lateinit var viewModel: GameOverViewModel
-    private var player : MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,27 +59,11 @@ class GameOverActivity : AppCompatActivity() {
 
     fun playSound() {
         if (viewModel.getSoundStatus().value!!) {
-
             Timer(false).schedule(object : TimerTask() {
                 override fun run() {
-                    runOnUiThread {
-                        if (player == null) {
-                            player = MediaPlayer.create(application.applicationContext, R.raw.game_over_2)
-                            player?.setOnCompletionListener {
-                                stopPlayer()
-                            }
-                        }
-                        player?.start()
-                    }
+                    runOnUiThread { startPlayer(application.applicationContext, R.raw.game_over_2) }
                 }
             }, 350)
-        }
-    }
-
-    private fun stopPlayer() {
-        if (player != null) {
-            player!!.release()
-            player = null
         }
     }
 
