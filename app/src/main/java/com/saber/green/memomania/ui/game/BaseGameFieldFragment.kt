@@ -27,6 +27,7 @@ open class BaseGameFieldFragment : Fragment(){
     private val TAG = "GameActivity"
     private val INITIAL_SHOW_DELAY : Long = 2000
     private var correctSound : Int? = null
+    private var inCorrectSound : Int? = null
     private val activeButtons = ArrayList<MaterialButton>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,6 +51,7 @@ open class BaseGameFieldFragment : Fragment(){
 
     fun initSounds(){
         correctSound = SoundPool.getInstance()!!.load(activity!!.applicationContext, R.raw.laser, 1)
+        inCorrectSound = SoundPool.getInstance()!!.load(activity!!.applicationContext, R.raw.wrong, 1)
     }
 
     fun highlightActiveButtons(context: Context) {
@@ -90,6 +92,7 @@ open class BaseGameFieldFragment : Fragment(){
                         setTileParams(context, button, buttonValue, R.color.dark_button_color,false)
                     }
                     GameLifecycle.INCORRECT_VALUE -> {
+                        playInCorrectSoundIfOn()
                         vibrateIfOn(VibrationUtils.PATTERN_INCORRECT_VALUE)
                         AnimationUtils.incorrectValueTileAnimation(activity!!, button)
                     }
@@ -108,6 +111,7 @@ open class BaseGameFieldFragment : Fragment(){
                         navigateToWinActivity()
                     }
                     GameLifecycle.GAME_OVER -> {
+                        playInCorrectSoundIfOn()
                         vibrateIfOn(VibrationUtils.PATTERN_INCORRECT_VALUE)
                         AnimationUtils.incorrectValueTileAnimation(activity!!, button)
                         navigateToGameOverActivity()
@@ -120,6 +124,13 @@ open class BaseGameFieldFragment : Fragment(){
     private fun playCorrectSoundIfOn(){
         if (viewModel.getSoundStatus().value!!) {
             SoundPool.getInstance()!!.play(correctSound!!, 1F, 1F, 0, 0, 1F)
+        }
+    }
+
+
+    private fun playInCorrectSoundIfOn(){
+        if (viewModel.getSoundStatus().value!!) {
+            SoundPool.getInstance()!!.play(inCorrectSound!!, 1F, 1F, 0, 0, 1F)
         }
     }
 

@@ -2,6 +2,7 @@ package com.saber.green.memomania.ui
 
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -23,19 +24,20 @@ import java.util.*
 class NextLevelActivity : AppCompatActivity() {
 
     private val TAG = "NextLevelActivity"
-    private lateinit var nextLevelViewModel: NextLevelViewModel
+    private lateinit var viewModel: NextLevelViewModel
     private lateinit var rewardedAd: RewardedAd
+    private var player : MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_next_level)
-        nextLevelViewModel =  ViewModelProvider(this).get(NextLevelViewModel::class.java)
+        viewModel =  ViewModelProvider(this).get(NextLevelViewModel::class.java)
         initMotivationText()
         initLevelCountObservable1()
         initLifeObserver()
         onReadyButtonClick()
         onGetLifeButtonClick()
-
+        playSound()
         MobileAds.initialize(this) {}
 
         rewardedAd = RewardedAd(this, "ca-app-pub-3940256099942544/5224354917")
@@ -55,14 +57,14 @@ class NextLevelActivity : AppCompatActivity() {
     }
 
     fun initLevelCountObservable1() {
-        nextLevelViewModel.getLevelCount().observe(this, Observer {
+        viewModel.getLevelCount().observe(this, Observer {
             val resultText = "${resources.getString(R.string.next_level_is)} $it"
             next_level_number.text = resultText
         })
     }
 
     fun initLifeObserver() {
-        nextLevelViewModel.getLifeCount().observe(this, Observer {
+        viewModel.getLifeCount().observe(this, Observer {
             Timer(false).schedule(object : TimerTask() {
                 override fun run() {
                     runOnUiThread { life_number_next_menu.text = it }
@@ -83,7 +85,7 @@ class NextLevelActivity : AppCompatActivity() {
         get_life_button.setOnClickListener {
             AnimationUtils.layoutColorAnimation(this, life_card_next_menu.background as GradientDrawable, R.color.accent_color, R.color.green, AnimationUtils.DURATION)
             AnimationUtils.scaleAnimation(heart_icon_next_menu, 1.5f, AnimationUtils.DURATION)
-            nextLevelViewModel.addLife()
+            viewModel.addLife()
             it.isClickable = false
             it.setBackgroundColor(ContextCompat.getColor(this, R.color.dark_button_color))
         }
@@ -112,6 +114,41 @@ class NextLevelActivity : AppCompatActivity() {
 //            }
 //        }
     }
+
+
+    fun playSound() {
+        if (viewModel.getSoundStatus().value!!) {
+
+            Timer(false).schedule(object : TimerTask() {
+                override fun run() {
+                    runOnUiThread {
+
+                        if (player == null) {
+                            player = MediaPlayer.create(application.applicationContext, R.raw.next_level)
+                            player?.setOnCompletionListener {
+                                stopPlayer()
+                            }
+                        }
+                        player?.start()
+
+                    }
+                }
+            }, 350)
+        }
+    }
+
+    private fun stopPlayer() {
+        if (player != null) {
+            player!!.release()
+            player = null
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopPlayer()
+    }
+
 
     override fun onBackPressed() {
         super.onBackPressed()
