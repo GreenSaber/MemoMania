@@ -10,11 +10,15 @@ class NextLevelViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val lifeCount = MutableLiveData<String>()
     private val levelCount = MutableLiveData<String>()
+    private val soundStatus = MutableLiveData<Boolean>()
 
     init {
         lifeCount.value = Game.getLifesCount().toString()
         levelCount.value = Game.getLevel().toString()
+        soundStatus.value = Game.getSoundStatus()
     }
+
+    fun getSoundStatus(): LiveData<Boolean> = soundStatus
 
     fun getLifeCount(): LiveData<String> = lifeCount
 
