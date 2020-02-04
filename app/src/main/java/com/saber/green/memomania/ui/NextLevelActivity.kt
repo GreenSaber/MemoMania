@@ -99,7 +99,7 @@ class NextLevelActivity : BaseActivity() {
                                         setGetLifeButtonStatus(false)
                                     }
                                 }
-                            },  1000)
+                            },  800)
                         }
                     }
 

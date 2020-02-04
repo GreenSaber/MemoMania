@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
+import com.google.android.gms.ads.MobileAds
 import com.saber.green.memomania.R
 import com.saber.green.memomania.model.GameDifficulty
 import com.saber.green.memomania.ui.game.GameActivity
@@ -22,6 +23,7 @@ class MenuActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
         viewModel = ViewModelProvider(this).get(MenuViewModel::class.java)
+        MobileAds.initialize(this, "ca-app-pub-2121398048827766~8792426680")
         onPlayButtonClicked()
         onRateMeButtonClick()
         onRightArrowButtonClick()
