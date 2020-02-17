@@ -24,6 +24,7 @@ class MenuActivity : BaseActivity() {
         setContentView(R.layout.activity_menu)
         viewModel = ViewModelProvider(this).get(MenuViewModel::class.java)
         MobileAds.initialize(this, "ca-app-pub-2121398048827766~8792426680")
+        initPlayButton()
         onPlayButtonClicked()
         onRateMeButtonClick()
         onRightArrowButtonClick()
@@ -35,9 +36,15 @@ class MenuActivity : BaseActivity() {
         initVibrationObserver()
     }
 
+    fun initPlayButton(){
+        viewModel.getGameInProgressStatus().observe(this, Observer {
+            play_button.text = if (it) resources.getString(R.string.resume) else resources.getString(R.string.play)
+        })
+    }
+
     fun onPlayButtonClicked() {
        play_button.setOnClickListener {
-           viewModel.refreshData()
+           viewModel.onPlayButtonClick()
            val intent = Intent(this, GameActivity::class.java)
            startActivity(intent)
            overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)

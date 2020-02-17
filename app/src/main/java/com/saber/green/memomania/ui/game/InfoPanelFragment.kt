@@ -47,9 +47,7 @@ class InfoPanelFragment : Fragment() {
         viewModel.getLifes().observe(viewLifecycleOwner, Observer {
             Timer(false).schedule(object : TimerTask() {
                 override fun run() {
-                    activity?.runOnUiThread {
-                        life_number.text = it
-                    }
+                    activity?.runOnUiThread { life_number.text = it }
                 }
             }, AnimationUtils.DURATION_DEFAULT)
         })
@@ -65,7 +63,8 @@ class InfoPanelFragment : Fragment() {
         viewModel.getSoundStatus().observe(viewLifecycleOwner, Observer {
             sound_button_game.icon = if (it)
                 resources.getDrawable(R.drawable.ic_sound_on, activity!!.theme)
-            else resources.getDrawable(R.drawable.ic_sound_off, activity!!.theme)
+            else
+                resources.getDrawable(R.drawable.ic_sound_off, activity!!.theme)
         })
     }
 
@@ -73,7 +72,8 @@ class InfoPanelFragment : Fragment() {
         viewModel.getVibrationStatus().observe(viewLifecycleOwner, Observer {
             vibration_button_game.icon = if (it)
                 resources.getDrawable(R.drawable.ic_vibrate, activity!!.theme)
-            else resources.getDrawable(R.drawable.ic_vibrate_off, activity!!.theme)
+            else
+                resources.getDrawable(R.drawable.ic_vibrate_off, activity!!.theme)
         })
     }
 
@@ -91,6 +91,7 @@ class InfoPanelFragment : Fragment() {
 
     fun onHomeButtonClick() {
         home_button_game.setOnClickListener {
+            viewModel.onHomeButtonClick()
             val intent = Intent(activity, MenuActivity::class.java)
             startActivity(intent)
             activity?.overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
@@ -99,7 +100,7 @@ class InfoPanelFragment : Fragment() {
 
     fun onRestartButtonClick() {
         restart_button_game.setOnClickListener {
-            viewModel.resetGame()
+            viewModel.onRestartButtonClick()
             val intent = Intent(activity, GameActivity::class.java)
             startActivity(intent)
             activity?.overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)

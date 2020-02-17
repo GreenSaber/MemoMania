@@ -6,6 +6,7 @@
     <string name="classic">Classic</string>
     <string name="hard">Hard</string>
     <string name="play">play</string>
+    <string name="resume">resume</string>
     <string name="home">home</string>
     <string name="rate">rate</string>
     <string name="sound_on">sound: on</string>
@@ -17,12 +18,10 @@
     <string name="restart">restart</string>
     <string name="congratulations">Congratulations!</string>
     <string name="you_win">You win</string>
-    <string name="get_life">get a life</string>
-    <string name="you_finished_on_level">You finished on level : </string>
+    <string name="get_life">get lifes:</string>
+    <string name="you_finished_on_level">You finished on level:</string>
     <string name="next_level_is">Next level is: </string>
     <string name="nothing_can_stop_you">Nothing can stop you now!</string>
     <string name="game_over">Game over</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="press_resume_to_continue">Press \'RESUME\' to continue</string>
 </resources>

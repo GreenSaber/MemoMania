@@ -14,7 +14,7 @@ class WinViewModel(application: Application) : AndroidViewModel(application) {
         soundStatus.value = Game.getSoundStatus()
     }
 
-    fun resetGame() = Game.resetGame()
+    fun onHomeRestartButtonClick() = Game.resetGame()
 
     fun getSoundStatus(): LiveData<Boolean> = soundStatus
 

@@ -53,7 +53,7 @@ class GameActivity : AppCompatActivity(){
                 runOnUiThread {
                     startActivity(intent)
                     overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
-                    Toast.makeText(applicationContext, "Press 'PLAY' to continue", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, resources.getText(R.string.press_resume_to_continue), Toast.LENGTH_LONG).show()
                 }
             }
         }, 500)

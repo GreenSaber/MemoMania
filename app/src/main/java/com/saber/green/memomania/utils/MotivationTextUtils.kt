@@ -8,7 +8,7 @@ class MotivationTextUtils {
             "Super!",
             "Good work!",
             "Great!",
-            "Not bad.",
+            "Not bad!",
             "Nice going!",
             "Wow!",
             "Terrific!",

@@ -63,15 +63,15 @@
                     android:id="@+id/life_number_next_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:fontFamily="@font/raleway_bold"
+                    android:fontFamily="@font/oxygen_bold"
                     android:text="3"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/heart_icon_next_menu"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/heart_icon_next_menu" />
+                    app:layout_constraintStart_toEndOf="@id/heart_icon_next_menu"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -82,7 +82,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:fontFamily="@font/raleway_bold"
+                android:fontFamily="@font/oxygen_bold"
                 android:gravity="center"
                 android:text="@string/nothing_can_stop_you"
                 android:textAlignment="center"
@@ -108,7 +108,7 @@
                     android:id="@+id/next_level_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/raleway_bold"
+                    android:fontFamily="@font/oxygen_bold"
                     android:text="@string/next_level_is"
                     android:textAlignment="center"
                     android:textColor="@color/white"
