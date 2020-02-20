@@ -33,7 +33,7 @@ class GameOverActivity : BaseActivity() {
 
     fun onHomeButtonPressed() {
         game_over_home_button.setOnClickListener {
-            viewModel.resetGame()
+            viewModel.onHomeRestartButtonClick()
             val intent = Intent(this, MenuActivity::class.  java)
             startActivity(intent)
             overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
@@ -42,7 +42,7 @@ class GameOverActivity : BaseActivity() {
 
     fun onRestartButtonPressed() {
         game_over_restart_button.setOnClickListener {
-            viewModel.resetGame()
+            viewModel.onHomeRestartButtonClick()
             val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)
@@ -51,7 +51,7 @@ class GameOverActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        viewModel.resetGame()
+        viewModel.onHomeRestartButtonClick()
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_right)

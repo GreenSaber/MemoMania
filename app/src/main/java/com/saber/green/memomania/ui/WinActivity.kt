@@ -24,7 +24,7 @@ class WinActivity : BaseActivity() {
 
     fun onHomeButtonPressed() {
         win_home_button.setOnClickListener {
-            viewModel.resetGame()
+            viewModel.onHomeRestartButtonClick()
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
@@ -33,7 +33,7 @@ class WinActivity : BaseActivity() {
 
     fun onRestartButtonPressed() {
         win_restart_button.setOnClickListener {
-            viewModel.resetGame()
+            viewModel.onHomeRestartButtonClick()
             val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)
@@ -53,7 +53,7 @@ class WinActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        viewModel.resetGame()
+        viewModel.onHomeRestartButtonClick()
         val intent = Intent(this, MenuActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_left)

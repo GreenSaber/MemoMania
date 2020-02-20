@@ -25,8 +25,12 @@ class NextLevelViewModel(application: Application) : AndroidViewModel(applicatio
     fun getLevelCount(): LiveData<String> = levelCount
 
     fun addLife() {
-        val lifes = Game.getLifesCount() + 1
-        Game.setLifesCount(lifes)
+        val totalLifes = Game.getLifesCount() + Game.getLivesCountToIncrease()
+        Game.setLifesCount(totalLifes)
         lifeCount.value = Game.getLifesCount().toString()
+    }
+
+    fun getLivesCountToIncrease(): String {
+        return Game.getLivesCountToIncrease().toString()
     }
 }

@@ -78,16 +78,20 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun onSoundButtonClick() {
         val statusToSet: Boolean = !Game.getSoundStatus()
         Game.setSoundStatus(statusToSet)
-        soundStatus.value = statusToSet
+        soundStatus.value = Game.getSoundStatus()
     }
 
     fun onVibrationButtonClick() {
         val statusToSet: Boolean = !Game.getVibrationStatus()
         Game.setVibrationStatus(statusToSet)
-        vibrationStatus.value = statusToSet
+        vibrationStatus.value = Game.getVibrationStatus()
     }
 
-    fun resetGame(){
+    fun onHomeButtonClick(){
+        Game.setGameInProgressStatus(true)
+    }
+
+    fun onRestartButtonClick(){
         Game.resetGame()
     }
 

@@ -36,6 +36,7 @@ class NextLevelActivity : BaseActivity() {
         viewModel =  ViewModelProvider(this).get(NextLevelViewModel::class.java)
         setGetLifeButtonStatus(false)
         initMotivationText()
+        initGetLifeText()
         initLevelCountObservable1()
         initLifeObserver()
         onReadyButtonClick()
@@ -43,6 +44,7 @@ class NextLevelActivity : BaseActivity() {
         playSound()
         MobileAds.initialize(this) {}
 
+        //TEST AD
         rewardedAd = RewardedAd(this, "ca-app-pub-3940256099942544/5224354917")
         val adLoadCallback = object: RewardedAdLoadCallback() {
             override fun onRewardedAdLoaded() {
@@ -54,6 +56,11 @@ class NextLevelActivity : BaseActivity() {
 
     fun initMotivationText(){
         next_level_motivation_text.text = MotivationTextUtils.getRandomText()
+    }
+
+    fun initGetLifeText() {
+        val resultText = resources.getString(R.string.get_life) + " " + viewModel.getLivesCountToIncrease()
+        get_life_button.text = resultText
     }
 
     fun initLevelCountObservable1() {

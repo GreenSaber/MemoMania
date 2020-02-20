@@ -10,6 +10,7 @@ class Game {
         private var difficulty: GameDifficulty = GameDifficulty.CLASSIC
         private var soundStatus: Boolean = true
         private var vibrationStatus: Boolean = true
+        private var gameInProgressStatus: Boolean = false
 
         fun getDifficulty(): GameDifficulty {
             return difficulty
@@ -21,6 +22,14 @@ class Game {
                 GameDifficulty.EASY -> 3
                 GameDifficulty.CLASSIC -> 4
                 GameDifficulty.HARD -> 5
+            }
+        }
+
+        fun getLivesCountToIncrease(): Int {
+            return when (difficulty) {
+                GameDifficulty.EASY -> 1
+                GameDifficulty.CLASSIC -> 2
+                GameDifficulty.HARD -> 3
             }
         }
 
@@ -50,6 +59,14 @@ class Game {
 
         fun getLifesCount(): Int {
             return lifesCount
+        }
+
+        fun getGameInProgressStatus(): Boolean {
+            return gameInProgressStatus
+        }
+
+        fun setGameInProgressStatus(status: Boolean) {
+            gameInProgressStatus = status
         }
 
         fun getLevelsCount(): Int {
@@ -91,6 +108,7 @@ class Game {
                 GameDifficulty.HARD -> 5
             }
             levelNumber = 1
+            gameInProgressStatus = false
         }
     }
 
